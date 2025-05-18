@@ -5,14 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plate Animation</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- your external CSS if any -->
-  <link rel="stylesheet" href="styles.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -21,9 +15,12 @@
       overflow: hidden;
     }
 
+    /* ← MATCHES YOUR NAVBAR CONTAINER */
     .container {
       position: relative;
       width: 100%;
+      max-width: 1280px;    /* ← set to your navbar’s max-width */
+      margin: 0 auto;       /* ← center it */
       height: 100vh;
     }
 
@@ -37,7 +34,6 @@
       animation-duration: 1.2s;
       animation-fill-mode: forwards;
       letter-spacing: 2px;
-      /* text-shadow is not a valid single-value property—remove if unintended */
     }
 
     .dummy-content h3 {
@@ -48,13 +44,13 @@
 
     .dummy-content.left {
       top: 80px;
-      left: 6.25%;               /* 6.25% gutter from left */
+      left: 6.25%;               /* ← same gutter inside centered container */
       animation-name: slideInLeft;
     }
 
     .dummy-content.right {
-      top: 80px;                 /* same vertical anchor */
-      right: 6.25%;              /* 6.25% gutter from right */
+      bottom: 160px;                /* ← same vertical level */
+      right: 6.25%;              /* ← identical gutter on the right */
       animation-name: slideInRight;
     }
 
@@ -84,66 +80,41 @@
       color: #eaeaea;
       opacity: 0;
       z-index: -1;
-      text-align: center;
       white-space: nowrap;
       animation: fadeInText 1.5s ease forwards;
       pointer-events: none;
     }
 
-    /* Keyframes */
+    /* keyframes */
     @keyframes slideInLeft {
       from { transform: translateX(-100%); opacity: 0; }
-      to   { transform: translateX(0);     opacity: 1; }
+      to   { transform: translateX(0);      opacity: 1; }
     }
     @keyframes slideInRight {
       from { transform: translateX(100%); opacity: 0; }
       to   { transform: translateX(0);    opacity: 1; }
     }
     @keyframes riseRotateToCenter {
-      0% {
-        top: 100%;
-        transform: translate(-50%, 0) rotate(45deg);
-      }
-      100% {
-        top: 45%;
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
+      0%   { top: 100%; transform: translate(-50%, 0) rotate(45deg); }
+      100% { top: 45%;  transform: translate(-50%, -50%) rotate(0deg); }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
+    @keyframes fadeIn     { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInText {
-      from {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-      }
-      to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
+      from { transform: translate(-50%, 100%); opacity: 0; }
+      to   { transform: translate(-50%, -50%); opacity: 1; }
     }
     @keyframes fallRotateToBottom {
-      0% {
-        top: 45%;
-        transform: translate(-50%, -50%) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        transform: translate(-50%, 0) rotate(-45deg);
-        opacity: 0;
-      }
+      0%   { top: 45%; transform: translate(-50%, -50%) rotate(0); opacity: 1; }
+      100% { top: 100%; transform: translate(-50%, 0) rotate(-45deg); opacity: 0; }
     }
-
     .fall-animation {
       animation: fallRotateToBottom 1.2s ease-in forwards !important;
     }
   </style>
 </head>
-
 <body>
   <div id="navbar-container"></div>
+
   <div class="container" onclick="handleClick()">
     <div class="dummy-content left">
       <h3>DUMMY CONTENT</h3>
@@ -165,31 +136,21 @@
   <script>
     let scrollTriggered = false;
 
-    // Load navbar HTML
     fetch('./navbar.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('navbar-container').innerHTML = html;
-      });
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar-container').innerHTML = html);
 
     function handleClick() {
       if (scrollTriggered) return;
       scrollTriggered = true;
-
-      const plateWrapper = document.querySelector('.plate-wrapper');
-      plateWrapper.classList.add('fall-animation');
-
-      setTimeout(() => {
-        window.location.href = './roundPlate.html';
-      }, 1200);
+      document.querySelector('.plate-wrapper').classList.add('fall-animation');
+      setTimeout(() => window.location.href = './roundPlate.html', 1200);
     }
 
-    window.addEventListener('wheel', (event) => {
+    window.addEventListener('wheel', e => {
       if (scrollTriggered) return;
-
-      if (event.deltaY > 10) {
-        handleClick();
-      } else if (event.deltaY < -10) {
+      if (e.deltaY > 10) handleClick();
+      else if (e.deltaY < -10) {
         scrollTriggered = true;
         window.location.href = './index.html';
       }
