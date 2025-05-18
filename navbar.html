@@ -1,0 +1,40 @@
+  <!-- Navbar -->
+  <header class="w-full shadow-md px-16 py-4 flex justify-between items-center ">
+    <!-- logo -->
+    <div class="flex items-center space-x-2">
+      <img src="./assets/logo.png" alt="Logo" class="h-14 w-auto" />
+    </div>
+
+    <!-- primary nav (hidden on mobile) -->
+    <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+      <a href="/app/index.html" class="transition hover:text-green-600">Home</a>
+      <a href="#" id="about-tab-trigger" class="nav-item cursor-pointer">About</a>
+      <a href="#" id="products-tab-trigger" class="transition hover:text-green-600">Products</a>
+      <a href="solutions.html" class="transition hover:text-green-600">Solutions</a>
+      <a href="technology.html" class="transition hover:text-green-600">Technology</a>
+      <a href="custom-projects.html" class="transition hover:text-green-600">Custom Projects</a>
+      <a href="blog.html" class="transition hover:text-green-600">Blogs & Events</a>
+      
+      <i class="bi bi-cart" style="font-size: 1.125rem;"></i> <!-- Cart Icon -->
+      <i class="bi bi-search" style="font-size: 1.125rem; margin-left: 10px;"></i> <!-- Search Icon -->
+    </nav>
+
+    <!-- icons + auth buttons -->
+    <div class="flex items-center space-x-2 ml-20">
+
+
+
+
+      <!-- auth -->
+      <button onclick="window.location.href='./login.html'"
+        class="text-sm px-4 py-1 rounded-full border border-gray-300 hover:border-green-600 hover:text-green-600 transition">
+        Login
+      </button>
+      <button onclick="window.location.href='./register.html'"
+      class="text-sm px-4 py-1 rounded-full bg-green-600 text-white hover:bg-green-700 transition">
+        Register
+      </button>
+      
+    </div>
+  </header>
+  

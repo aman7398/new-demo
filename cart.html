@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart Sidebar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .cart-sidebar {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 300px;
+      height: 100vh;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      z-index: 1050;
+    }
+
+    .empty-message {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    .item-box {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: none;
+      border: none;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="cart-sidebar">
+  <button class="close-btn" onclick="closeCart()">×</button>
+  <h5 class="fw-bold">Add to Cart</h5>
+  <div class="empty-message">Empty</div>
+  <div class="item-box">Add a item</div>
+</div>
+
+<script>
+  function closeCart() {
+    document.querySelector('.cart-sidebar').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
