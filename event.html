@@ -21,13 +21,12 @@
     .section-title {
       font-weight: 700;
       font-size: 1.8rem;
-      margin-top: 0; /* ensure no default top margin */
     }
     .section-subtitle {
       color: #6c757d;
       font-size: 1rem;
       text-align: center;
-      margin: 0 auto;
+      margin: 0 auto 1rem;
       max-width: 40rem;
       line-height: 1.5;
     }
@@ -60,13 +59,10 @@
       color: #6c757d;
       font-size: 1.25rem;
     }
-    /* reduced top padding above heading */
-    .events-section {
-      padding: 1rem 1rem 2.5rem; /* 1rem top, 1rem sides, 2.5rem bottom */
-    }
-    @media (min-width: 768px) {
+    @media (max-width: 767.98px) {
       .events-section {
-        padding: 2rem 3rem 4rem; /* 2rem top on md+, 3rem sides, 4rem bottom */
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
       }
     }
   </style>
@@ -75,23 +71,23 @@
   <div id="navbar-container"></div>
 
   <section
-    class="events-section text-center"
+    class="events-section py-3 py-md-5 px-3 px-md-5 text-center"
     data-aos="fade-up"
     onclick="window.location.href='./customer.html'"
   >
     <div class="container">
-      <h2 class="section-title mb-3">Events & Media</h2>
-      <p class="section-subtitle mb-5">
+      <h2 class="section-title mb-2">Events & Media</h2>
+      <p class="section-subtitle mb-4">
         Stay connected with our latest events, webinars, and educational content.
       </p>
 
-      <div class="row g-4 align-items-start fs-5">
+      <div class="row align-items-start fs-5">
         <!-- Left: Upcoming Events -->
         <div class="col-md-6 text-start" data-aos="fade-left">
-          <h3 class="fw-bold mb-5">Upcoming Events</h3>
+          <h3 class="fw-bold mb-4">Upcoming Events</h3>
 
           <!-- Event 1 -->
-          <div class="d-flex mb-5">
+          <div class="d-flex mb-4">
             <div class="event-date me-3">
               <div>15</div><small>May</small>
             </div>
@@ -103,7 +99,7 @@
           </div>
 
           <!-- Event 2 -->
-          <div class="d-flex mb-5">
+          <div class="d-flex mb-4">
             <div class="event-date me-3">
               <div>22</div><small>May</small>
             </div>
@@ -115,7 +111,7 @@
           </div>
 
           <!-- Event 3 -->
-          <div class="d-flex mb-0 mb-md-5">
+          <div class="d-flex">
             <div class="event-date me-3">
               <div>05</div><small>Jun</small>
             </div>
@@ -128,7 +124,7 @@
         </div>
 
         <!-- Right: Video Placeholder -->
-        <div class="col-md-6" data-aos="fade-right">
+        <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right">
           <div class="video-box">
             Video Placeholder
           </div>
