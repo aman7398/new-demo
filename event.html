@@ -21,6 +21,7 @@
     .section-title {
       font-weight: 700;
       font-size: 1.8rem;
+      margin-top: 0; /* ensure no default top margin */
     }
     .section-subtitle {
       color: #6c757d;
@@ -59,13 +60,13 @@
       color: #6c757d;
       font-size: 1.25rem;
     }
-    /* increased vertical padding on section */
+    /* reduced top padding above heading */
     .events-section {
-      padding: 2.5rem 1rem;
+      padding: 1rem 1rem 2.5rem; /* 1rem top, 1rem sides, 2.5rem bottom */
     }
     @media (min-width: 768px) {
       .events-section {
-        padding: 4rem 3rem;
+        padding: 2rem 3rem 4rem; /* 2rem top on md+, 3rem sides, 4rem bottom */
       }
     }
   </style>
@@ -114,7 +115,7 @@
           </div>
 
           <!-- Event 3 -->
-          <div class="d-flex mb-5 mb-md-0">
+          <div class="d-flex mb-0 mb-md-5">
             <div class="event-date me-3">
               <div>05</div><small>Jun</small>
             </div>
