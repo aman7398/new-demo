@@ -1,209 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plate Animation</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <!-- your external CSS if any -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .dummy-content {
+      position: absolute;
+      width: 300px;
+      max-width: 90%;
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      animation-duration: 1.2s;
+      animation-fill-mode: forwards;
+      letter-spacing: 2px;
+      /* text-shadow is not a valid single-value property—remove if unintended */
+    }
+
+    .dummy-content h3 {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .dummy-content.left {
+      top: 80px;
+      left: 6.25%;               /* 6.25% gutter from left */
+      animation-name: slideInLeft;
+    }
+
+    .dummy-content.right {
+      top: 80px;                 /* same vertical anchor */
+      right: 6.25%;              /* 6.25% gutter from right */
+      animation-name: slideInRight;
+    }
+
+    .plate-wrapper {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: riseRotateToCenter 1.8s ease-out forwards;
+    }
+
+    .plate-image {
+      width: 500px;
+      height: 500px;
+      object-fit: contain;
+      opacity: 0;
+      animation: fadeIn 1.8s ease-out forwards;
+    }
+
+    .background-text {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(1.5rem, 10vw, 50rem);
+      font-weight: 600;
+      color: #eaeaea;
+      opacity: 0;
+      z-index: -1;
+      text-align: center;
+      white-space: nowrap;
+      animation: fadeInText 1.5s ease forwards;
+      pointer-events: none;
+    }
+
+    /* Keyframes */
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+    @keyframes riseRotateToCenter {
+      0% {
+        top: 100%;
+        transform: translate(-50%, 0) rotate(45deg);
+      }
+      100% {
+        top: 45%;
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeInText {
+      from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+    @keyframes fallRotateToBottom {
+      0% {
+        top: 45%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        transform: translate(-50%, 0) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    .fall-animation {
+      animation: fallRotateToBottom 1.2s ease-in forwards !important;
+    }
+  </style>
 </head>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
-
-  .dummy-content {
-    position: absolute;
-    width: 300px;
-    max-width: 90%;
-    text-align: center;
-    color: #555;
-    font-size: 16px;
-    animation-duration: 1.2s;
-    animation-fill-mode: forwards;
-    letter-spacing: 2px;
-    text-shadow: 5px;
-  }
-
-  .dummy-content h3 {
-    color: green;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .dummy-content.left {
-  top: 80px;
-  left: 6.25%;               /* ← quarter-way in */
-
-  animation-name: slideInLeft;
-}
-
-.dummy-content.right {
-  bottom: 160px;
-right: 3.25%;               /* ← three-quarters in */
- 
-  animation-name: slideInRight;
-}
-
-  .plate-wrapper {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    /* changed */
-    transform: translate(-50%, -50%);
-    /* changed */
-    animation: riseRotateToCenter 1.8s ease-out forwards;
-  }
-
-
-  .plate-image {
-    width: 500px;
-    height: 500px;
-    object-fit: contain;
-    opacity: 0;
-    animation: fadeIn 1.8s ease-out forwards;
-  }
-
-  /* Animation: move from bottom while rotating */
-  @keyframes riseRotateToCenter {
-    0% {
-      top: 100%;
-      transform: translate(-50%, 0) rotate(45deg);
-    }
-
-    100% {
-      top: 45%;
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-  }
-
-  /* Optional: fading in image */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-
-  .background-text {
-    position: absolute;
-    top: 40%;
-    /* changed */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* changed */
-    font-size: clamp(1.5rem, 10vw, 50rem);
-    font-weight: 600;
-    color: #eaeaea;
-    opacity: 0;
-    z-index: -1;
-    text-align: center;
-    white-space: nowrap;
-    animation: fadeInText 1.5s ease forwards;
-    pointer-events: none;
-  }
-
-
-
-
-
-  /* Animations */
-  @keyframes slideInLeft {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideInRight {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes riseFromBottom {
-    0% {
-      transform: translate(-50%, 100%);
-    }
-
-    100% {
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  @keyframes fadeInPlate {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeInText {
-    0% {
-      transform: translate(-50%, 100%);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
-  }
-
-
-  @keyframes fallRotateToBottom {
-    0% {
-      top: 45%;
-      transform: translate(-50%, -50%) rotate(0deg);
-      opacity: 1;
-    }
-
-    100% {
-      top: 100%;
-      transform: translate(-50%, 0) rotate(-45deg);
-      opacity: 0;
-    }
-  }
-
-  .fall-animation {
-    animation: fallRotateToBottom 1.2s ease-in forwards !important;
-  }
-</style>
 
 <body>
   <div id="navbar-container"></div>
@@ -224,46 +161,39 @@ right: 3.25%;               /* ← three-quarters in */
 
     <div class="background-text">Square Plate</div>
   </div>
+
   <script>
     let scrollTriggered = false;
 
     // Load navbar HTML
     fetch('./navbar.html')
       .then(res => res.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
       });
 
     function handleClick() {
-      if (scrollTriggered) return; // prevent multiple triggers
+      if (scrollTriggered) return;
       scrollTriggered = true;
 
       const plateWrapper = document.querySelector('.plate-wrapper');
-
-      // Add the exit fall animation
       plateWrapper.classList.add('fall-animation');
 
-      // Delay redirect until animation finishes
       setTimeout(() => {
         window.location.href = './roundPlate.html';
-      }, 1200); // match animation duration
+      }, 1200);
     }
 
-    // Scroll direction detection
     window.addEventListener('wheel', (event) => {
       if (scrollTriggered) return;
 
       if (event.deltaY > 10) {
-        // Scrolling down
         handleClick();
       } else if (event.deltaY < -10) {
-        // Scrolling up
         scrollTriggered = true;
         window.location.href = './index.html';
       }
     }, { passive: true });
   </script>
-
 </body>
-
 </html>
