@@ -51,12 +51,19 @@
     .video-box {
       background-color: #ddd;
       border-radius: 1.25rem;
-      height: 20rem;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #6c757d;
       font-size: 1.25rem;
+    }
+    @media (max-width: 767.98px) {
+      .events-section {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+      }
     }
   </style>
 </head>
@@ -64,9 +71,9 @@
   <div id="navbar-container"></div>
 
   <section
-    onclick="window.location.href='./customer.html'"
-    class="py-4 px-4 px-md-5 text-center"
+    class="events-section py-3 py-md-5 px-3 px-md-5 text-center"
     data-aos="fade-up"
+    onclick="window.location.href='./customer.html'"
   >
     <div class="container">
       <h2 class="section-title mb-2">Events & Media</h2>
