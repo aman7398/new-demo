@@ -22,17 +22,15 @@
     }
 
     .container {
-      perspective: 1000px;
-      /* Enable 3D perspective */
-      perspective-origin: center;
       position: relative;
       width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
       height: 100vh;
       overflow: hidden;
     }
 
     .dummy-content {
-      padding-top: 2%;
       position: absolute;
       width: 300px;
       max-width: 90%;
@@ -41,6 +39,7 @@
       font-size: 16px;
       animation-duration: 1.2s;
       animation-fill-mode: forwards;
+      letter-spacing: 2px;
     }
 
     .dummy-content h3 {
@@ -50,29 +49,29 @@
     }
 
     .dummy-content.top-right {
-      top: 10px;
-      right: 60px;
+      bottom: 160px;
+      right: 6.25%;
       animation-name: slideFromLeftToRight;
     }
 
     .dummy-content.bottom-left {
-      bottom: 120px;
-      left: 50px;
+      top: 80px;
+      left: 6.25%;
       animation-name: slideFromRightToLeft;
     }
 
     .plate-wrapper {
       position: absolute;
-      top: 50%;
       left: 50%;
+      top: 50%;
       transform: translate(-50%, -50%);
       animation: riseRotateToCenter 1.8s ease-out forwards;
       transform-style: preserve-3d;
     }
 
     .plate-image {
-      width: 420px;
-      height: 420px;
+      width: 500px;
+      height: 500px;
       object-fit: contain;
       opacity: 0;
       animation: fadeIn 1.8s ease-out forwards;
@@ -80,83 +79,46 @@
 
     .background-text {
       position: absolute;
-      top: 20%;
+      top: 40%;
       left: 50%;
-      transform: translate(-50%, 50%);
-      font-size: clamp(1.5rem, 8vw, 6rem);
-      /* More flexibility for small to large screens */
-      font-weight: bold;
-      color: #d3d3d3;
+      transform: translate(-50%, -50%);
+      font-size: clamp(1.5rem, 10vw, 50rem);
+      font-weight: 600;
+      color: #eaeaea;
       opacity: 0;
       z-index: -1;
-      text-align: center;
-      padding: 0 1rem;
-      /* Prevent text overflow on small screens */
-      animation: fadeInText 1.5s ease forwards;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      pointer-events: none;
+      animation: fadeInText 1.5s ease forwards;
     }
+    .dummy-content h3,
+.dummy-content p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
 
 
     /* Animations */
 
     @keyframes slideFromLeftToRight {
-      0% {
-        transform: translateX(-100%);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     @keyframes slideFromRightToLeft {
-      0% {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     @keyframes riseRotateToCenter {
-      0% {
-        top: 100%;
-        transform: translate(-50%, 0) rotate(45deg);
-      }
-
-      100% {
-        top: 50%;
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
+      0% { top: 100%; transform: translate(-50%, 0) rotate(45deg); }
+      100% { top: 45%; transform: translate(-50%, -50%) rotate(0deg); }
     }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     @keyframes fadeInText {
-      0% {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translate(-50%, 50%);
-        opacity: 1;
-      }
+      from { transform: translate(-50%, 100%); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
     }
 
     @keyframes diveIntoScreen {
@@ -182,13 +144,13 @@
 
   <div class="container" onclick="handleClick()">
     <!-- Top Right Dummy Content -->
-    <div class="dummy-content top-right">
+    <div class="dummy-content bottom-left">
       <h3>DUMMY CONTENT</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
     </div>
 
     <!-- Bottom Left Dummy Content -->
-    <div class="dummy-content bottom-left">
+    <div class="dummy-content top-right">
       <h3>DUMMY CONTENT</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
     </div>
@@ -201,39 +163,32 @@
     <!-- Background Text -->
     <div class="background-text">Round Plate</div>
   </div>
+
   <script>
     fetch('./navbar.html')
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar-container').innerHTML = data;
       });
+
     let scrollTriggered = false;
 
     function handleClick() {
-      if (scrollTriggered) return; // prevent multiple triggers
+      if (scrollTriggered) return;
       scrollTriggered = true;
       const plateWrapper = document.querySelector('.plate-wrapper');
-
-      // Remove the rise animation class
-      // plateWrapper.classList.remove('plate-wrapper');
-
-      // Add the exit fall animation
       plateWrapper.classList.add('dive-animation');
-
-      // Optional: delay redirect until animation finishes
       setTimeout(() => {
         window.location.href = './deepShape.html';
-      }, 1200); // matches the fall animation duration
+      }, 1200);
     }
-    // Scroll direction detection
+
     window.addEventListener('wheel', (event) => {
       if (scrollTriggered) return;
 
       if (event.deltaY > 10) {
-        // Scrolling down
         handleClick();
       } else if (event.deltaY < -10) {
-        // Scrolling up
         scrollTriggered = true;
         window.location.href = './squarePlate.html';
       }
