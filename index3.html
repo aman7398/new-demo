@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aumekaa UI – All Sections</title>
+
+  <!-- Tailwind, Bootstrap, AOS & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ─── PAGE & NAVBAR SETUP ─── */
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('./assets/background.svg') center/cover no-repeat;
+      margin: 0; padding: 0;
+      overflow-x: hidden;      /* no sideways scroll */
+      overflow-y: auto;        /* allow vertical scroll */
+      height: auto;            /* remove height:100% */
+    }
+    #navbar-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    main { scroll-behavior: smooth; }
+
+    /* ─── SECTION SIZING ─── */
+    main > section {
+      position: relative;
+      width: 100%;
+    }
+    /* first five fill the viewport & clip overflow */
+    main > section:not(#sustainable-section) {
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* last section auto‐grows to fit content */
+    #sustainable-section {
+      height: auto !important;
+      overflow: visible !important;
+      padding: 4rem 0;
+      background-color: #f4f7f9;
+    }
+
+    /* ─── COMMON ANIMS & STYLES ─── */
+    .dummy-content {
+      position: absolute;
+      width: 300px; max-width: 90%;
+      text-align: center;
+      color: #555; font-size: 16px;
+      animation-duration: 1.2s; animation-fill-mode: forwards;
+      letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+      z-index: 5;
+    }
+    .plate-wrapper {
+      position: absolute; left:50%; top:50%;
+      transform: translate(-50%,-50%);
+      animation: riseRotateToCenter 1.8s ease-out forwards;
+      transform-style: preserve-3d;
+      z-index: 1;
+    }
+    .plate-image {
+      object-fit: contain; opacity: 0;
+      animation: fadeIn 1.8s ease-out forwards;
+    }
+    .background-text {
+      position: absolute; top:40%; left:50%;
+      transform: translate(-50%,-50%);
+      font-size: clamp(1.5rem,10vw,50rem);
+      font-weight: 600; color: #eaeaea;
+      opacity: 0; z-index: 0;
+      white-space: nowrap; pointer-events: none;
+      animation: fadeInText 1.5s ease forwards;
+    }
+
+    /* ─── SECTION-SPECIFIC PLATE & DUMMY CONFIG ─── */
+    #square-section .dummy-content.left    { top: 80px; left: 6.25%;  animation-name: slideInLeft; }
+    #square-section .dummy-content.right   { bottom: 160px; right: 6.25%; animation-name: slideInRight; }
+    #square-section .plate-image           { width: 500px; height: 500px; }
+
+    #round-section .dummy-content.bottom-left { top: 80px; left: 6.25%; animation-name: slideFromRightToLeft; }
+    #round-section .dummy-content.top-right    { bottom: 160px; right: 6.25%; animation-name: slideFromLeftToRight; }
+    #round-section .plate-image                 { width: 400px; height: 400px; }
+
+    #deep-section .dummy-content.bottom-left { top: 80px; left: 6.25%; animation-name: slideFromRightToLeft; }
+    #deep-section .dummy-content.top-right    { bottom: 160px; right: 6.25%; animation-name: slideFromLeftToRight; }
+    #deep-section .plate-image                { width: 500px; height: 500px; }
+
+    #tray-section .dummy-content.bottom-left { top: 80px; left: 6.25%; animation-name: slideFromRightToLeft; }
+    #tray-section .dummy-content.top-right    { bottom: 160px; right: 6.25%; animation-name: slideFromLeftToRight; }
+    #tray-section .plate-image                { width: 400px; height: 400px; }
+
+    /* ─── SUSTAINABLE SECTION CARDS ─── */
+    #sustainable-section .section-title    { font-size: 1.8rem; font-weight: 700; }
+    #sustainable-section .section-subtitle { color: #6c757d; font-size: 1rem; }
+    #sustainable-section .solution-card {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 2px solid transparent; overflow: hidden;
+      transition: box-shadow .3s, border .3s;
+      height: 100%;
+    }
+    #sustainable-section .solution-card:hover {
+      box-shadow: 0 0 12px 2px rgba(25,135,84,0.4);
+    }
+    #sustainable-section .solution-img  { width: 100%; height: 180px; object-fit: cover; }
+    #sustainable-section .solution-body { padding: 20px; text-align: start; }
+    #sustainable-section .icon-circle   {
+      width:36px; height:36px; border-radius:50%;
+      background:#e6f5ea; color:#198754;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; margin-bottom:10px;
+    }
+    #sustainable-section .link-green,
+    #sustainable-section .link-blue      { color:#198754; font-weight:500; font-size:.9rem; }
+    #sustainable-section .stagger-up     { margin:-30px 0 30px; }
+    #sustainable-section .stagger-down   { margin:30px 0 -30px; }
+    @media (max-width:767px) {
+      #sustainable-section .stagger-up,
+      #sustainable-section .stagger-down { margin:0; }
+    }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes slideInLeft           { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+    @keyframes slideInRight          { from{transform:translateX(100%)}  to{transform:translateX(0)} }
+    @keyframes slideFromLeftToRight  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+    @keyframes slideFromRightToLeft  { from{transform:translateX(100%)}  to{transform:translateX(0)} }
+    @keyframes riseRotateToCenter    {
+      0%   { top:100%; transform:translate(-50%,0) rotate(45deg) }
+      100% { top:45%;  transform:translate(-50%,-50%) rotate(0deg) }
+    }
+    @keyframes fadeIn                { from{opacity:0} to{opacity:1} }
+    @keyframes fadeInText            {
+      from{transform:translate(-50%,100%);opacity:0}
+      to{transform:translate(-50%,-50%);opacity:1}
+    }
+    @keyframes diveIntoScreen        {
+      0%{transform:translate(-50%,-50%) scale(1) translateZ(0);opacity:1}
+      100%{transform:translate(-50%,-50%) scale(0.1) translateZ(-800px);opacity:0}
+    }
+    @keyframes fallRotateToBottom    {
+      0%   { top:45%; transform:translate(-50%,-50%) rotate(0); opacity:1 }
+      100% { top:100%; transform:translate(-50%,0) rotate(-45deg); opacity:0 }
+    }
+    .fall-animation { animation: fallRotateToBottom 1.2s ease-in forwards !important; }
+    .dive-animation { animation: diveIntoScreen    1.2s ease-in forwards !important; }
+  </style>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main>
+    <!-- 1️⃣ HERO -->
+    <section id="hero-section">
+      <video class="video-bg" autoplay muted loop playsinline>
+        <source src="assets/woodland-trees.mp4" type="video/mp4"/>
+      </video>
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Sustainable Solutions for a Greener Tomorrow</h1>
+        <p>At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives—ensuring eco-friendly living without compromising quality.</p>
+      </div>
+    </section>
+
+    <!-- 2️⃣ SQUARE PLATE -->
+    <section id="square-section">
+      <div class="dummy-content left">
+        <h3>DUMMY CONTENT</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="dummy-content right">
+        <h3>DUMMY CONTENT</h3>
+        <p>More details here.</p>
+      </div>
+      <div class="plate-wrapper">
+        <img src="assets/Plate.png" alt="Square Plate" class="plate-image"/>
+      </div>
+      <div class="background-text">Square Plate</div>
+    </section>
+
+    <!-- 3️⃣ ROUND PLATE -->
+    <section id="round-section">
+      <div class="dummy-content bottom-left">
+        <h3>DUMMY CONTENT</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="dummy-content top-right">
+        <h3>DUMMY CONTENT</h3>
+        <p>More details here.</p>
+      </div>
+      <div class="plate-wrapper">
+        <img src="assets/round-plate.png" alt="Round Plate" class="plate-image"/>
+      </div>
+      <div class="background-text">Round Plate</div>
+    </section>
+
+    <!-- 4️⃣ DEEP SHAPES -->
+    <section id="deep-section">
+      <div class="dummy-content bottom-left">
+        <h3>DUMMY CONTENT</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="dummy-content top-right">
+        <h3>DUMMY CONTENT</h3>
+        <p>More details here.</p>
+      </div>
+      <div class="plate-wrapper">
+        <img src="assets/deep-shape.png" alt="Deep Shapes" class="plate-image"/>
+      </div>
+      <div class="background-text">Deep Shapes</div>
+    </section>
+
+    <!-- 5️⃣ TRAYS -->
+    <section id="tray-section">
+      <div class="dummy-content bottom-left">
+        <h3>DUMMY CONTENT</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="dummy-content top-right">
+        <h3>DUMMY CONTENT</h3>
+        <p>More details here.</p>
+      </div>
+      <div class="plate-wrapper">
+        <img src="assets/tray.png" alt="Trays" class="plate-image"/>
+      </div>
+      <div class="background-text">Trays</div>
+    </section>
+
+    <!-- 6️⃣ SUSTAINABLE SOLUTIONS -->
+    <section id="sustainable-section" data-aos="fade-up">
+      <div class="container d-flex flex-column justify-content-center align-items-center text-center">
+        <h2 class="section-title">Sustainable Solutions</h2>
+        <p class="section-subtitle mb-5">
+          Discover our range of eco-friendly products made from renewable materials designed to leave zero toxic waste.
+        </p>
+        <div class="row g-4 justify-content-center px-4">
+          <!-- Card 1 -->
+          <div class="col-md-3 stagger-down" data-aos="fade-up" data-aos-delay="100">
+            <div class="solution-card">
+              <img src="./assets/everyday-use-products.png" class="solution-img" alt="Everyday Use"/>
+              <div class="solution-body">
+                <img class="icon-circle" src="./assets/Overlay.png" alt="Icon"/>
+                <h6 class="fw-semibold">Everyday Use</h6>
+                <p>Sustainable tableware, drinkware, and home essentials for daily use.</p>
+                <a href="#" class="link-blue">Learn More →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="col-md-3 stagger-up" data-aos="fade-up" data-aos-delay="200">
+            <div class="solution-card">
+              <img src="./assets/industrial-solutions.png" class="solution-img" alt="Industrial Solutions"/>
+              <div class="solution-body">
+                <img class="icon-circle" src="./assets/Overlay-21.png" alt="Icon"/>
+                <h6 class="fw-semibold">Industrial Solutions</h6>
+                <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
+                <a href="#" class="link-green">View Products →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="col-md-3 stagger-down" data-aos="fade-up" data-aos-delay="300">
+            <div class="solution-card">
+              <img src="./assets/Foodservice-Packaging.png" class="solution-img" alt="Foodservice Packaging"/>
+              <div class="solution-body">
+                <img class="icon-circle" src="./assets/Overlay-3.png" alt="Icon"/>
+                <h6 class="fw-semibold">Foodservice Packaging</h6>
+                <p>Compostable containers, cutlery, and service items for food businesses.</p>
+                <a href="#" class="link-blue">View Solutions →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="col-md-3 stagger-up" data-aos="fade-up" data-aos-delay="400">
+            <div class="solution-card">
+              <img src="./assets/Custom-Solutions.png" class="solution-img" alt="Custom Solutions"/>
+              <div class="solution-body">
+                <img class="icon-circle" src="./assets/Overlay-31.png" alt="Icon"/>
+                <h6 class="fw-semibold">Custom Solutions</h6>
+                <p>Tailored eco-packaging and design for unique business needs.</p>
+                <a href="#" class="link-green">View Products →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bootstrap JS, AOS JS & custom script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // load navbar
+    fetch('./navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+      });
+    // init AOS
+    AOS.init({ duration:800, once:true });
+
+    // full‐page scroll nav
+    const sections = Array.from(document.querySelectorAll('main > section'));
+    let idx = 0, scrolling = false;
+    function scrollToIdx(i) {
+      if (i < 0 || i >= sections.length) return;
+      scrolling = true;
+      sections[i].scrollIntoView({ behavior: 'smooth' });
+      idx = i;
+      setTimeout(() => scrolling = false, 800);
+    }
+    window.addEventListener('wheel', e => {
+      if (scrolling) return;
+      if (e.deltaY > 0 && idx < sections.length - 1) scrollToIdx(idx + 1);
+      else if (e.deltaY < 0) scrollToIdx(idx - 1);
+    }, { passive: true });
+
+    // section click animations
+    const findIdx = id => sections.findIndex(s => s.id === id);
+    document.querySelector('#square-section .plate-wrapper').addEventListener('click', () => {
+      const w = document.querySelector('#square-section .plate-wrapper');
+      w.classList.add('fall-animation');
+      setTimeout(() => scrollToIdx(findIdx('round-section')), 1200);
+    });
+    document.querySelector('#round-section .plate-wrapper').addEventListener('click', () => {
+      const w = document.querySelector('#round-section .plate-wrapper');
+      w.classList.add('dive-animation');
+      setTimeout(() => scrollToIdx(findIdx('deep-section')), 1200);
+    });
+    document.querySelector('#deep-section .plate-wrapper').addEventListener('click', () => {
+      const w = document.querySelector('#deep-section .plate-wrapper');
+      w.classList.add('dive-animation');
+      setTimeout(() => scrollToIdx(findIdx('tray-section')), 1200);
+    });
+    document.querySelector('#tray-section .plate-wrapper').addEventListener('click', () => {
+      const w = document.querySelector('#tray-section .plate-wrapper');
+      w.classList.add('dive-animation');
+      setTimeout(() => scrollToIdx(findIdx('sustainable-section')), 1200);
+    });
+  </script>
+</body>
+</html>
