@@ -1487,39 +1487,48 @@
 
   <!-- Sustainable Solutions Section (Original) -->
 <section id="sustainable-section" class="text-center" onclick="handleSustainableClick()">
+  <!-- INLINE STYLES FOR HOVER BORDER + IMAGE RADIUS -->
+  <style>
+    /* card base */
+    #sustainable-section .solution-card {
+      border: 2px solid transparent;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      background: #fff;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    /* hover effect */
+    #sustainable-section .solution-card:hover {
+      border-color: #10B981;
+      transform: translateY(-5px);
+    }
+    /* make img full-width + top corners rounded */
+    #sustainable-section .solution-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+  </style>
+
   <div class="container">
-    <h2 class="section-title mb-3 mt-5">Sustainable Solutions</h2>
-    <p class="section-subtitle mb-5">
+    <h2 class="section-title mb-3 mt-4">Sustainable Solutions</h2>
+    <p class="section-subtitle mb-4">
       Discover our range of eco-friendly products made from renewable materials<br>
       designed to leave zero toxic waste.
     </p>
 
     <div class="row g-4 justify-content-center mt-2">
 
-      <!-- CARD TEMPLATE -->
-      <div class="col-md-3" style="transform: translateY(-30px);" data-aos="fade-up" data-aos-delay="100">
-        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
-          <img src="./assets/everyday-use-products.png" alt="Everyday Use"
-               style="width: 100%; height: auto; display: block;" />
+      <!-- CARD 1 -->
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="100" style="transform: translateY(-30px);">
+        <div class="solution-card">
+          <img src="./assets/everyday-use-products.png" alt="Everyday Use" />
           <div class="solution-body" style="padding: 20px;">
             <img class="icon-circle" src="./assets/Overlay.png"
-                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
-            <h6 class="fw-semibold">Industrial Solutions</h6>
-            <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
-            <a href="#" class="link-blue">View Solutions →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Repeat the same structure for other cards, changing content accordingly -->
-
-      <div class="col-md-3" style="transform: translateY(30px);" data-aos="fade-up" data-aos-delay="200">
-        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
-          <img src="./assets/industrial-solutions.png" alt="Everyday Use"
-               style="width: 100%; height: auto; display: block;" />
-          <div class="solution-body" style="padding: 20px;">
-            <img class="icon-circle" src="./assets/Overlay-21.png"
-                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
+                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
             <h6 class="fw-semibold">Everyday Use</h6>
             <p>Sustainable tableware, drinkware, and home essentials for daily use.</p>
             <a href="#" class="link-green">View Products →</a>
@@ -1527,13 +1536,27 @@
         </div>
       </div>
 
-      <div class="col-md-3" style="transform: translateY(-30px);" data-aos="fade-up" data-aos-delay="300">
-        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
-          <img src="./assets/Foodservice-Packaging.png" alt="Foodservice Packaging"
-               style="width: 100%; height: auto; display: block;" />
+      <!-- CARD 2 -->
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="200" style="transform: translateY(30px);">
+        <div class="solution-card">
+          <img src="./assets/industrial-solutions.png" alt="Industrial Solutions" />
+          <div class="solution-body" style="padding: 20px;">
+            <img class="icon-circle" src="./assets/Overlay-21.png"
+                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
+            <h6 class="fw-semibold">Industrial Solutions</h6>
+            <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
+            <a href="#" class="link-green">View Solutions →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="300" style="transform: translateY(-30px);">
+        <div class="solution-card">
+          <img src="./assets/Foodservice-Packaging.png" alt="Foodservice Packaging" />
           <div class="solution-body" style="padding: 20px;">
             <img class="icon-circle" src="./assets/Overlay-3.png"
-                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
+                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
             <h6 class="fw-semibold">Foodservice Packaging</h6>
             <p>Compostable containers, cutlery, and service items for food businesses.</p>
             <a href="#" class="link-green">View Products →</a>
@@ -1541,13 +1564,13 @@
         </div>
       </div>
 
-      <div class="col-md-3" style="transform: translateY(30px);" data-aos="fade-up" data-aos-delay="400">
-        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
-          <img src="./assets/Custom-Solutions.png" alt="Custom Solutions"
-               style="width: 100%; height: auto; display: block;" />
+      <!-- CARD 4 -->
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="400" style="transform: translateY(30px);">
+        <div class="solution-card">
+          <img src="./assets/Custom-Solutions.png" alt="Custom Solutions" />
           <div class="solution-body" style="padding: 20px;">
             <img class="icon-circle" src="./assets/Overlay-31.png"
-                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
+                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
             <h6 class="fw-semibold">Custom Solutions</h6>
             <p>Tailored eco products crafted for your business or event needs.</p>
             <a href="#" class="link-blue">View Products →</a>
@@ -1560,22 +1583,23 @@
 </section>
 
 
+
   <!-- Sustainable Solutions Section 2 (New Layout) -->
   <section id="sustainable2-section" class="text-center" onclick="handleSustainable2Click()">
     <div class="container">
-      <h2 class="section-title mb-3 mt-2">Sustainable Manufacturing</h2>
+      <h2 class="section-title mb-3 mt-1">Sustainable Manufacturing</h2>
       <p class="section-subtitle mb-4">
         Discover our eco-friendly production processes and quality standards<br>
         designed for maximum sustainability and minimal environmental impact.
       </p>
 
-      <div class="relative-container mt-2">
+      <div class="relative-container">
         <!-- Center Image -->
         <img src="assets/ManufacturingFacility.png" class="main-image" alt="Sustainable Production Facility"
           data-aos="fade-in" />
 
         <!-- Top Left Card -->
-        <div class="overlay-card corner-card top-left" data-aos="fade-down-right" data-aos-delay="100">
+        <div class="overlay-card corner-card top-left mt-3" data-aos="fade-down-right" data-aos-delay="100">
           <div class="d-flex align-items-start">
             <img class="overlay-icon" src="./assets/overlay9.png" alt="Zero-Waste Production" />
             <div>
@@ -1589,7 +1613,7 @@
         </div>
 
         <!-- Top Right Card -->
-        <div class="overlay-card corner-card top-right" data-aos="fade-down-left" data-aos-delay="200">
+        <div class="overlay-card corner-card top-right mt-3" data-aos="fade-down-left" data-aos-delay="200">
           <div class="d-flex align-items-start">
             <img class="overlay-icon" src="./assets/circle.png" alt="Advanced Production" />
             <div>
