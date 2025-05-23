@@ -1345,6 +1345,10 @@
     ul {
       padding-left: 0 !important;
     }
+
+      #footer-section .container ul li {
+    color: #fff;
+  }
   </style>
 </head>
 
@@ -2155,95 +2159,200 @@
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-green-800 text-white pt-12 pb-24">
-      <div class="max-w-screen-xl mx-auto px-6 md:px-32">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+  <section id="footer-section" class="text-center" onclick="handleFooterClick()">
 
-          <!-- Logo & Description -->
-          <div>
-            <img src="./assets/footer-logo.png" alt="Aumekaa Logo" class="mb-4 w-28" />
-            <p class="text-sm text-white/90 mb-6" style="text-align: left;">
-              Providing 100% plastic-free, biodegradable, and compostable alternatives for both B2B and B2C
-              markets—ensuring eco-friendly living without compromising quality.
-            </p>
-            <div class="flex space-x-4">
-              <a href="#" class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition">
-                <img src="./assets/facebook-icon.png" alt="Facebook" class="h-4 w-4" />
-              </a>
-              <a href="#" class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition">
-                <img src="./assets/x-icon.png" alt="X" class="h-4 w-4" />
-              </a>
-              <a href="#" class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition">
-                <img src="./assets/insta-icon.png" alt="Instagram" class="h-4 w-4" />
-              </a>
-              <a href="#" class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition">
-                               <img src="./assets/linkedin-icon.png" alt="LinkedIn" class="h-4 w-4" />
-              </a>
-            </div>
+  <!-- Newsletter Section (unchanged) -->
+
+
+  <!-- Footer -->
+  <footer class="bg-green-800 text-white pt-12 pb-24">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-32">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
+
+        <!-- 1. Logo & Description -->
+        <div>
+          <img
+            src="./assets/footer-logo.png"
+            alt="Aumekaa Logo"
+            class="mb-4 w-28"
+          />
+          <p class="text-sm text-white/90 mb-6">
+            Providing 100% plastic-free, biodegradable, and compostable
+            alternatives for both B2B and B2C markets—ensuring eco-friendly living
+            without compromising quality.
+          </p>
+          <div class="flex space-x-3">
+            <a
+              href="#"
+              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
+            >
+              <img
+                src="./assets/facebook-icon.png"
+                alt="Facebook"
+                class="h-4 w-4"
+              />
+            </a>
+            <a
+              href="#"
+              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
+            >
+              <img src="./assets/x-icon.png" alt="X" class="h-4 w-4" />
+            </a>
+            <a
+              href="#"
+              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
+            >
+              <img
+                src="./assets/insta-icon.png"
+                alt="Instagram"
+                class="h-4 w-4"
+              />
+            </a>
+            <a
+              href="#"
+              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
+            >
+              <img
+                src="./assets/linkedin-icon.png"
+                alt="LinkedIn"
+                class="h-4 w-4"
+              />
+            </a>
           </div>
-
-          <!-- Products -->
-          <div style="margin-left: 5rem;">
-            <h4 class="font-semibold mb-4 text-white text-left">Products</h4>
-            <ul class="space-y-2 text-sm text-white/90 text-left">
-              <li>Everyday Use</li>
-              <li>Industrial Solutions</li>
-              <li>Foodservice Packaging</li>
-              <li>E-Commerce Packaging</li>
-              <li>Bamboo Products</li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div>
-            <h4 class="font-semibold mb-4 text-white text-left">Contact</h4>
-            <ul class="space-y-4 text-sm text-white/90">
-              <!-- Address -->
-              <li class="flex items-start gap-3 text-left">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1 text-white/70" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5" />
-                </svg>
-                <span>123 Eco Street, Green Park, Bangalore 560001, India</span>
-              </li>
-
-              <!-- Phone -->
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1 text-white/70" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" />
-                </svg>
-                +91 98765 43210
-              </li>
-
-              <!-- Email -->
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1 text-white/70" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M16 12H8m8 0H8m8 0H8m8 0H8" />
-                </svg>
-                info@aumekaa.com
-              </li>
-            </ul>
-          </div>
-
         </div>
 
-        <!-- Divider & Bottom Bar -->
-        <div
-          class="border-t border-white/20 mt-10 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-white/70">
-          <p>© 2025 Aumekaa Global Products Pvt. Ltd. All rights reserved.</p>
-          <div class="space-x-4 mt-2 md:mt-0">
-            Privacy Policy
-            Terms of Service
-            Cookie Policy
-          </div>
+        <!-- 2. Products -->
+        <div>
+          <h4 class="font-semibold mb-4 text-white">Products</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="text-white hover:underline">Everyday Use</a>
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline"
+                >Industrial Solutions</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline"
+                >Foodservice Packaging</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline"
+                >E-Commerce Packaging</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline"
+                >Bamboo Products</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div>
+          <h4 class="font-semibold mb-4 text-white">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="text-white hover:underline">About Us</a>
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline">Sustainability</a>
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline"
+                >Blog &amp; News</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline">Careers</a>
+            </li>
+            <li>
+              <a href="#" class="text-white hover:underline">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div>
+          <h4 class="font-semibold mb-4 text-white">Contact</h4>
+          <ul class="space-y-4 text-sm text-white/90">
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mt-1 text-white/70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5"
+                />
+              </svg>
+              <span>123 Eco Street, Green Park, Bangalore 560001, India</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mt-1 text-white/70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 
+                     002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z"
+                />
+              </svg>
+              <span>+91 98765 43210</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mt-1 text-white/70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12H8m8 0H8m8 0H8m8 0H8"
+                />
+              </svg>
+              <span>info@aumekaa.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Divider & Bottom Bar -->
+      <div
+        class="border-t border-white/20 mt-10 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-white/70"
+      >
+        <p>© 2025 Aumekaa Global Products Pvt. Ltd. All rights reserved.</p>
+        <div class="space-x-6 mt-2 md:mt-0">
+          <a href="#" class="text-white hover:underline">Privacy Policy</a>
+          <a href="#" class="text-white hover:underline">Terms of Service</a>
+          <a href="#" class="text-white hover:underline">Cookie Policy</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
+
+</section>
+
+
   </section>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
