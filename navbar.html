@@ -1,40 +1,55 @@
-  <!-- Navbar -->
-  <header class="w-full shadow-md px-16 py-4 flex justify-between items-center ">
-    <!-- logo -->
-    <div class="flex items-center space-x-2">
-      <img src="./assets/logo.png" alt="Logo" class="h-14 w-auto" />
-    </div>
+<header class="w-full shadow-md px-16 py-4 flex items-center">
+  <!-- logo -->
+  <div class="flex items-center space-x-2">
+    <img src="./assets/logo.png" alt="Logo" class="h-14 w-auto" />
+  </div>
 
-    <!-- primary nav (hidden on mobile) -->
-    <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-      <a href="/app/index.html" class="transition hover:text-green-600">Home</a>
-      <a href="#" id="about-tab-trigger" class="nav-item cursor-pointer">About</a>
-      <a href="#" id="products-tab-trigger" class="transition hover:text-green-600">Products</a>
-      <a href="solutions.html" class="transition hover:text-green-600">Solutions</a>
-      <a href="technology.html" class="transition hover:text-green-600">Technology</a>
-      <a href="custom-projects.html" class="transition hover:text-green-600">Custom Projects</a>
-      <a href="blog.html" class="transition hover:text-green-600">Blogs & Events</a>
-      
-      <i class="bi bi-cart" style="font-size: 1.125rem;"></i> <!-- Cart Icon -->
-      <i class="bi bi-search" style="font-size: 1.125rem; margin-left: 10px;"></i> <!-- Search Icon -->
-    </nav>
+  <!-- primary nav (centered on desktop) -->
+ <nav class="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm">
+  <a href="/index.html" class="text-gray-700 transition-colors hover:text-green-600">
+    Home
+  </a>
+  <a href="#" id="about-tab-trigger" class="text-gray-700 transition-colors hover:text-green-600 cursor-pointer">
+    About
+  </a>
+  <a href="#" id="products-tab-trigger" class="text-gray-700 transition-colors hover:text-green-600">
+    Products
+  </a>
+  <a href="solutions.html" class="text-gray-700 transition-colors hover:text-green-600">
+    Solutions
+  </a>
+  <a href="technology.html" class="text-gray-700 transition-colors hover:text-green-600">
+    Technology
+  </a>
+  <a href="custom-projects.html" class="text-gray-700 transition-colors hover:text-green-600">
+    Custom Projects
+  </a>
+  <a href="blog.html" class="text-gray-700 transition-colors hover:text-green-600">
+    Blogs &amp; Events
+  </a>
 
-    <!-- icons + auth buttons -->
-    <div class="flex items-center space-x-2 ml-20">
+  <!-- wrap icons in anchor (or span) so they get the same hover -->
+  <a href="#" class="text-gray-700 transition-colors hover:text-green-600">
+    <i class="bi bi-search text-lg"></i>
+  </a>
+  <a href="#" class="text-gray-700 transition-colors hover:text-green-600">
+    <i class="bi bi-cart text-lg"></i>
+  </a>
+</nav>
 
 
+  <!-- auth buttons -->
+  <div class="flex items-center space-x-2">
+    <button
+  onclick="window.location.href='./login.html'"
+  class="text-sm px-4 py-1 rounded-full bg-gray-300 text-gray-800 hover:text-gray-900 transition"
+>
+  Login
+</button>
 
-
-      <!-- auth -->
-      <button onclick="window.location.href='./login.html'"
-        class="text-sm px-4 py-1 rounded-full border border-gray-300 hover:border-green-600 hover:text-green-600 transition">
-        Login
-      </button>
-      <button onclick="window.location.href='./register.html'"
+    <button onclick="window.location.href='./register.html'"
       class="text-sm px-4 py-1 rounded-full bg-green-600 text-white hover:bg-green-700 transition">
-        Register
-      </button>
-      
-    </div>
-  </header>
-  
+      Register
+    </button>
+  </div>
+</header>
