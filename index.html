@@ -633,7 +633,7 @@
 
     .overlay-card {
       background: #fff;
-      border-radius: 0.75rem;
+      border-radius: 1rem;
       /* 12px */
       box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
       /* 4px 12px */
@@ -667,13 +667,13 @@
     }
 
     .overlay-title {
-      font-weight: 600;
+      font-weight: 500;
       margin: 0;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
     .overlay-text {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: #555;
       margin: 0.125rem 0 0;
       /* 2px */
@@ -1364,31 +1364,42 @@
   <!-- Navigation Dots -->
   
   <!-- Hero Section -->
-  <section id="hero-section" class="bg-white mt-14"
-    style="margin-bottom: 3.5rem; margin-left: 3.5rem; margin-right: 3.5rem;">
-    <div class="max-w-[100vw] mx-auto">
-      <div class="relative w-full"
-        style="height: calc(95vh - 3.5rem - 3.5rem - 3.5rem); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-          <source src="assets/woodland-trees.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div class="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
+ <section id="hero-section" class="bg-white mt-14"
+  style="margin-bottom: 3.5rem; margin-left: 3.5rem; margin-right: 3.5rem;">
+  <div class="max-w-[100vw] mx-auto">
+    <div class="relative w-full"
+      style="height: calc(95vh - 3.5rem - 3.5rem - 3.5rem); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+      <video
+        muted
+        autoplay
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        class="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="assets/woodland-trees.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-        <div class="absolute inset-0 z-10 flex items-center justify-center px-4">
-          <div class="text-white text-center max-w-3xl">
-            <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
-              Sustainable Solutions for a Greener Tomorrow
-            </h1>
-            <p class="text-base md:text-lg leading-relaxed drop-shadow-md">
-              At Aumekaa, we provide 100% plastic-free, biodegradable, and compostable alternatives for both businesses
-              and consumers—ensuring eco-friendly living without compromising quality.
-            </p>
-          </div>
+      <div class="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
+
+      <div class="absolute inset-0 z-10 flex items-center justify-center px-4">
+        <div class="text-white text-center max-w-3xl">
+          <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
+            Sustainable Solutions for a Greener Tomorrow
+          </h1>
+          <p class="text-base md:text-lg leading-relaxed drop-shadow-md">
+            At Aumekaa, we provide 100% plastic-free, biodegradable, and
+            compostable alternatives for both businesses and consumers—ensuring
+            eco-friendly living without compromising quality.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Square Plate Section -->
   <section id="square-plate-section">
@@ -1475,7 +1486,7 @@
   </section>
 
   <!-- Sustainable Solutions Section (Original) -->
-  <section id="sustainable-section" class="text-center" onclick="handleSustainableClick()">
+<section id="sustainable-section" class="text-center" onclick="handleSustainableClick()">
   <div class="container">
     <h2 class="section-title mb-3 mt-5">Sustainable Solutions</h2>
     <p class="section-subtitle mb-5">
@@ -1483,13 +1494,16 @@
       designed to leave zero toxic waste.
     </p>
 
-    <div class="row g-4 justify-content-center">
-      <!-- Card 1 (Up more) -->
-      <div class="col-md-3" style="transform: translateY(-40px);" data-aos="fade-up" data-aos-delay="100">
-        <div class="solution-card">
-          <img src="./assets/everyday-use-products.png" class="solution-img" alt="Industrial Solutions" />
-          <div class="solution-body">
-            <img class="icon-circle" src="./assets/Overlay.png" style="background:#f2f4f6; color:#667085;" />
+    <div class="row g-4 justify-content-center mt-2">
+
+      <!-- CARD TEMPLATE -->
+      <div class="col-md-3" style="transform: translateY(-30px);" data-aos="fade-up" data-aos-delay="100">
+        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
+          <img src="./assets/everyday-use-products.png" alt="Everyday Use"
+               style="width: 100%; height: auto; display: block;" />
+          <div class="solution-body" style="padding: 20px;">
+            <img class="icon-circle" src="./assets/Overlay.png"
+                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
             <h6 class="fw-semibold">Industrial Solutions</h6>
             <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
             <a href="#" class="link-blue">View Solutions →</a>
@@ -1497,12 +1511,15 @@
         </div>
       </div>
 
-      <!-- Card 2 (Down more) -->
-      <div class="col-md-3" style="transform: translateY(40px);" data-aos="fade-up" data-aos-delay="200">
-        <div class="solution-card">
-          <img src="./assets/industrial-solutions.png" class="solution-img" alt="Everyday Use" />
-          <div class="solution-body">
-            <img class="icon-circle" src="./assets/Overlay.png" style="background:#f2f4f6; color:#667085;" />
+      <!-- Repeat the same structure for other cards, changing content accordingly -->
+
+      <div class="col-md-3" style="transform: translateY(30px);" data-aos="fade-up" data-aos-delay="200">
+        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
+          <img src="./assets/industrial-solutions.png" alt="Everyday Use"
+               style="width: 100%; height: auto; display: block;" />
+          <div class="solution-body" style="padding: 20px;">
+            <img class="icon-circle" src="./assets/Overlay-21.png"
+                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
             <h6 class="fw-semibold">Everyday Use</h6>
             <p>Sustainable tableware, drinkware, and home essentials for daily use.</p>
             <a href="#" class="link-green">View Products →</a>
@@ -1510,12 +1527,13 @@
         </div>
       </div>
 
-      <!-- Card 3 (Up more) -->
-      <div class="col-md-3" style="transform: translateY(-40px);" data-aos="fade-up" data-aos-delay="300">
-        <div class="solution-card">
-          <img src="./assets/Foodservice-Packaging.png" class="solution-img" alt="Foodservice Packaging" />
-          <div class="solution-body">
-            <img class="icon-circle" src="./assets/Overlay.png" style="background:#f2f4f6; color:#667085;" />
+      <div class="col-md-3" style="transform: translateY(-30px);" data-aos="fade-up" data-aos-delay="300">
+        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
+          <img src="./assets/Foodservice-Packaging.png" alt="Foodservice Packaging"
+               style="width: 100%; height: auto; display: block;" />
+          <div class="solution-body" style="padding: 20px;">
+            <img class="icon-circle" src="./assets/Overlay-3.png"
+                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
             <h6 class="fw-semibold">Foodservice Packaging</h6>
             <p>Compostable containers, cutlery, and service items for food businesses.</p>
             <a href="#" class="link-green">View Products →</a>
@@ -1523,21 +1541,24 @@
         </div>
       </div>
 
-      <!-- Card 4 (Down more) -->
-      <div class="col-md-3" style="transform: translateY(40px);" data-aos="fade-up" data-aos-delay="400">
-        <div class="solution-card">
-          <img src="./assets/Custom-Solutions.png" class="solution-img" alt="Custom Solutions" />
-          <div class="solution-body">
-            <img class="icon-circle" src="./assets/Overlay.png" style="background:#f2f4f6; color:#667085;" />
+      <div class="col-md-3" style="transform: translateY(30px);" data-aos="fade-up" data-aos-delay="400">
+        <div class="solution-card" style="border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: white;">
+          <img src="./assets/Custom-Solutions.png" alt="Custom Solutions"
+               style="width: 100%; height: auto; display: block;" />
+          <div class="solution-body" style="padding: 20px;">
+            <img class="icon-circle" src="./assets/Overlay-31.png"
+                 style="background:#f2f4f6; color:#667085; width: 40px; height: 40px; border-radius: 50%; margin-bottom: 10px;" />
             <h6 class="fw-semibold">Custom Solutions</h6>
             <p>Tailored eco products crafted for your business or event needs.</p>
-            <a href="#" class="link-blue">View Products</a>
+            <a href="#" class="link-blue">View Products →</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
 
   <!-- Sustainable Solutions Section 2 (New Layout) -->
   <section id="sustainable2-section" class="text-center" onclick="handleSustainable2Click()">
@@ -1548,7 +1569,7 @@
         designed for maximum sustainability and minimal environmental impact.
       </p>
 
-      <div class="relative-container">
+      <div class="relative-container mt-2">
         <!-- Center Image -->
         <img src="assets/ManufacturingFacility.png" class="main-image" alt="Sustainable Production Facility"
           data-aos="fade-in" />
@@ -1556,7 +1577,7 @@
         <!-- Top Left Card -->
         <div class="overlay-card corner-card top-left" data-aos="fade-down-right" data-aos-delay="100">
           <div class="d-flex align-items-start">
-            <img class="overlay-icon" src="./assets/ManufacturingFacility.png" alt="Zero-Waste Production" />
+            <img class="overlay-icon" src="./assets/overlay9.png" alt="Zero-Waste Production" />
             <div>
               <p class="overlay-title">Zero-Waste Production</p>
               <p class="overlay-text">
@@ -2132,7 +2153,7 @@
                 <img src="./assets/insta-icon.png" alt="Instagram" class="h-4 w-4" />
               </a>
               <a href="#" class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition">
-                <img src="./assets/linkedin-icon.png" alt="LinkedIn" class="h-4 w-4" />
+                               <img src="./assets/linkedin-icon.png" alt="LinkedIn" class="h-4 w-4" />
               </a>
             </div>
           </div>
