@@ -22,6 +22,10 @@
       background-color: #fff;
       height: 100vh;
       overflow-x: hidden;
+      background-image: url('./assets/background.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
 
     /* Parallax Overlapping Container */
@@ -40,76 +44,52 @@
       width: 100%;
       height: 100vh;
       transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       z-index: 1;
-      background-image: url('./assets/background.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
     }
 
     /* Parallax Overlapping States */
     .parallax-section.current {
-      transform: translateY(0);
+      transform: translateZ(0) scale(1);
       opacity: 1;
       z-index: 10;
-      position: relative;
     }
 
     .parallax-section.next {
-      transform: translateY(100vh);
-      opacity: 1;
+      transform: translateZ(-200px) translateY(100vh) scale(0.8);
+      opacity: 0;
       z-index: 5;
     }
 
     .parallax-section.prev {
-      transform: translateY(-100vh);
-      opacity: 1;
+      transform: translateZ(-200px) translateY(-100vh) scale(0.8);
+      opacity: 0;
       z-index: 5;
     }
 
     .parallax-section.fixed {
-      transform: translateY(0);
+      transform: translateZ(0) scale(1);
       opacity: 1;
       z-index: 8;
       position: fixed;
-      top: 0;
-      left: 0;
     }
 
-    .parallax-section.covering {
-      transform: translateY(0);
-      opacity: 1;
-      z-index: 12;
-      animation: coverFromBottom 0.8s ease-out forwards;
+    .parallax-section.transitioning-out {
+      transform: translateZ(-100px) translateY(-50vh) scale(0.9);
+      opacity: 0.7;
+      z-index: 8;
+    }
+
+    .parallax-section.transitioning-in {
+      transform: translateZ(-50px) translateY(0) scale(0.95);
+      opacity: 0.9;
+      z-index: 9;
     }
 
     .parallax-section.overlapping-up {
-      transform: translateY(-100vh);
+      transform: translateZ(0) translateY(-100vh) scale(1);
       opacity: 1;
       z-index: 11;
-      animation: slideUpCover 0.8s ease-out forwards;
-    }
-
-    /* Animation for covering effect */
-    @keyframes coverFromBottom {
-      0% {
-        transform: translateY(100vh);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    /* Animation for upward covering effect */
-    @keyframes slideUpCover {
-      0% {
-        transform: translateY(100vh);
-      }
-      100% {
-        transform: translateY(0);
-      }
     }
 
     /* Navbar and dropdown styles */
@@ -1449,23 +1429,7 @@
   </div>
 
   <!-- Navigation Dots -->
-  <div class="navigation-dots">
-    <div class="nav-dot active" data-section="hero"></div>
-    <div class="nav-dot" data-section="square-plate"></div>
-    <div class="nav-dot" data-section="round-plate"></div>
-    <div class="nav-dot" data-section="deep-shape"></div>
-    <div class="nav-dot" data-section="tray"></div>
-    <div class="nav-dot" data-section="sustainable"></div>
-    <div class="nav-dot" data-section="sustainable2"></div>
-    <div class="nav-dot" data-section="core-values"></div>
-    <div class="nav-dot" data-section="featured-products"></div>
-    <div class="nav-dot" data-section="industries"></div>
-    <div class="nav-dot" data-section="business"></div>
-    <div class="nav-dot" data-section="events"></div>
-    <div class="nav-dot" data-section="testimonials"></div>
-    <div class="nav-dot" data-section="blog"></div>
-    <div class="nav-dot" data-section="footer"></div>
-  </div>
+ 
   
   <!-- Parallax Wrapper -->
   <div class="parallax-wrapper">
@@ -1526,7 +1490,7 @@
           <img src="./assets/Plate.png" alt="Square Plate" class="plate-image" />
         </div>
 
-        <div id="square-plate-background-text" class="background-text">Square Plate</div>
+        <div id="square-background-text" class="background-text">Square Plate</div>
       </div>
     </section>
 
@@ -1547,7 +1511,7 @@
           <img src="./assets/round-plate.png" alt="Round Plate" class="plate-image" />
         </div>
 
-        <div id="round-plate-background-text" class="background-text">Round Plate</div>
+        <div id="round-background-text" class="background-text">Round Plate</div>
       </div>
     </section>
 
@@ -2422,6 +2386,8 @@
   <script>
     let scrollTriggered = false;
     let currentSection = 'hero';
+    let scrollPosition = 0;
+    let totalPageHeight = 0;
     const sectionOrder = ['hero', 'square-plate', 'round-plate', 'deep-shape', 'tray', 'sustainable', 'sustainable2', 'core-values', 'featured-products', 'industries', 'business', 'events', 'testimonials', 'blog', 'footer'];
 
     // Initialize AOS
@@ -2430,6 +2396,9 @@
         duration: 800,
         once: true
       });
+      
+      // Calculate total page height
+      totalPageHeight = sectionOrder.length * window.innerHeight;
     });
 
     // Enhanced Video Autoplay with Multiple Fallbacks
@@ -2506,7 +2475,7 @@
       initializeVideo();
     });
 
-    // Enhanced Parallax Navigation System
+    // Enhanced Parallax Navigation System with upward scroll only
     function navigateToSection(targetSection) {
       if (currentSection === targetSection || scrollTriggered) return;
 
@@ -2519,12 +2488,13 @@
       // Update navigation dots
       updateNavigationDots(targetSection);
 
+      // Only allow upward parallax overlap effect
       if (targetIndex < currentIndex) {
         // Upward navigation with parallax overlapping
         upwardTransitionParallax(currentSection, targetSection);
       } else {
-        // Forward navigation with covering effect
-        forwardTransitionCovering(currentSection, targetSection);
+        // Forward navigation - simple transition without overlap
+        forwardTransitionSimple(currentSection, targetSection);
       }
     }
 
@@ -2541,7 +2511,7 @@
         }
       }
 
-      // Fix the current section in place
+      // Fix the previous section in place
       currentSectionEl.classList.remove('current');
       currentSectionEl.classList.add('fixed');
       
@@ -2579,17 +2549,16 @@
       }, 800);
     }
 
-    function forwardTransitionCovering(fromSection, toSection) {
+    function forwardTransitionSimple(fromSection, toSection) {
       const currentSectionEl = document.getElementById(`${fromSection}-section`);
       const targetSectionEl = document.getElementById(`${toSection}-section`);
 
-      // Fix the previous section in place
+      // Simple forward transition without overlap
       currentSectionEl.classList.remove('current');
-      currentSectionEl.classList.add('fixed');
+      currentSectionEl.classList.add('prev');
       
-      // Make the next section cover the screen smoothly
       targetSectionEl.classList.remove('next');
-      targetSectionEl.classList.add('covering');
+      targetSectionEl.classList.add('current');
 
       // Apply plate animations for product sections
       if (isPlateSection(fromSection)) {
@@ -2610,13 +2579,6 @@
       }
 
       setTimeout(() => {
-        // Complete the transition
-        currentSectionEl.classList.remove('fixed');
-        currentSectionEl.classList.add('prev');
-        
-        targetSectionEl.classList.remove('covering');
-        targetSectionEl.classList.add('current');
-
         // Reset plate animations
         if (isPlateSection(fromSection)) {
           const currentWrapper = document.querySelector(`#${fromSection}-section .plate-wrapper`);
@@ -2663,12 +2625,19 @@
       }
     }
 
-    // Handle scroll events
+    // Handle scroll events with enhanced logic
     window.addEventListener('wheel', e => {
       if (scrollTriggered) return;
 
       const currentIndex = sectionOrder.indexOf(currentSection);
       
+      // Calculate scroll position based on full page height
+      const scrollDelta = e.deltaY;
+      const sectionHeight = totalPageHeight / sectionOrder.length;
+      
+      scrollPosition += scrollDelta;
+      scrollPosition = Math.max(0, Math.min(scrollPosition, totalPageHeight - window.innerHeight));
+
       if (e.deltaY > 10) {
         // Scroll down - go to next section
         const nextIndex = currentIndex + 1;
@@ -2892,23 +2861,16 @@
         });
       }, 500);
     });
+
+    // Ensure background text is visible when navigating to a section
+    function showBackgroundText(sectionId) {
+      const backgroundText = document.getElementById(`${sectionId}-background-text`);
+      if (backgroundText) {
+        backgroundText.style.animation = 'fadeInText 1.5s ease forwards';
+        backgroundText.style.opacity = '1';
+      }
+    }
   </script>
 </body>
 
 </html>
-<!-- 
-## Key Changes Made:
-
-1. **Simplified Scroll Logic**: Removed the complex accumulated delta and scroll progress calculations that were causing the sections to get stuck.
-
-2. **Fixed Transition System**: Restored the original smooth transition system with proper CSS animations (`coverFromBottom` and `slideUpCover`).
-
-3. **Removed Blocking Conditions**: Eliminated the scroll progress threshold that was preventing transitions from completing.
-
-4. **Clean Section States**: Simplified the section state management to use clear CSS classes (`current`, `next`, `prev`, `fixed`, `covering`, `overlapping-up`).
-
-5. **Restored Original Navbar**: Kept the original navbar loading system as requested.
-
-6. **Smooth Animations**: Ensured all transitions use proper CSS animations with easing functions for smooth movement.
-
-Now the scroll should work properly - when you scroll down, the next section will smoothly cover the previous one, and when you scroll up, the previous section will overlap from above. The sections won't get stuck anymore! -->

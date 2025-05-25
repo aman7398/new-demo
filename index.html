@@ -1408,7 +1408,7 @@
 
   <!-- Square Plate Section -->
   <section id="square-plate-section">
-    <div class="main-container" onclick="handleSquarePlateClick()">
+    <div class="main-container">
       <div class="dummy-content left">
         <h3>DUMMY CONTENT</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
@@ -1429,7 +1429,7 @@
 
   <!-- Round Plate Section -->
   <section id="round-plate-section">
-    <div class="main-container" onclick="handleRoundPlateClick()">
+    <div class="main-container">
       <div class="dummy-content bottom-left">
         <h3>DUMMY CONTENT</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
@@ -1450,7 +1450,7 @@
 
   <!-- Deep Shape Section -->
   <section id="deep-shape-section">
-    <div class="main-container" onclick="handleDeepShapeClick()">
+    <div class="main-container">
       <div class="dummy-content bottom-left">
         <h3>DUMMY CONTENT</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
@@ -1471,7 +1471,7 @@
 
   <!-- Tray Section -->
   <section id="tray-section">
-    <div class="main-container" onclick="handleTrayClick()">
+    <div class="main-container">
       <div class="dummy-content bottom-left">
         <h3>DUMMY CONTENT</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
@@ -1491,7 +1491,7 @@
   </section>
 
   <!-- Sustainable Solutions Section (Original) -->
-<section id="sustainable-section" class="text-center" onclick="handleSustainableClick()">
+<section id="sustainable-section" class="text-center">
   <!-- INLINE STYLES FOR HOVER BORDER + IMAGE RADIUS -->
   <style>
     /* card base */
@@ -1590,7 +1590,7 @@
 
 
   <!-- Sustainable Solutions Section 2 (New Layout) -->
-  <section id="sustainable2-section" class="text-center" onclick="handleSustainable2Click()">
+  <section id="sustainable2-section" class="text-center">
     <div class="container">
       <h2 class="section-title mb-3 mt-1">Sustainable Manufacturing</h2>
       <p class="section-subtitle mb-4">
@@ -1662,7 +1662,7 @@
   </section>
 
   <!-- Core Values Section -->
-  <section id="core-values-section" class="mt-5 text-center" onclick="handleCoreValuesClick()">
+  <section id="core-values-section" class="mt-5 text-center">
     <div class="container">
       <h2 class="section-title mb-2">Our Core Values</h2>
       <p class="section-subtitle mb-4">Built on strong principles that drive our innovation and commitment to
@@ -1712,7 +1712,7 @@
   </section>
 
   <!-- Featured Products Section -->
-  <section id="featured-products-section" class="mt-5 text-center" onclick="handleFeaturedProductsClick()">
+  <section id="featured-products-section" class="mt-5 text-center">
     <div class="container">
       <h2 class="section-title mb-2">Featured Products</h2>
       <p class="section-subtitle mb-5">
@@ -1773,7 +1773,7 @@
   </section>
 
   <!-- Industries We Serve Section -->
-  <section id="industries-section" class="mt-5 text-center" onclick="handleIndustriesClick()">
+  <section id="industries-section" class="mt-5 text-center">
     <div class="container">
       <h2 class="section-title mb-2">Industries We Serve</h2>
       <p class="section-subtitle mb-5">
@@ -1850,7 +1850,7 @@
   </section>
 
   <!-- Business Verticals Section -->
-  <section id="business-section" class="mt-5 text-center" onclick="handleBusinessClick()">
+  <section id="business-section" class="mt-5 text-center">
     <div class="container">
       <h2 class="section-title mb-2">Business Verticals</h2>
       <p class="section-subtitle mb-5">Comprehensive sustainable solutions across multiple business segments.</p>
@@ -1909,7 +1909,7 @@
   </section>
 
   <!-- Events & Media Section -->
-  <section id="events-section" class="events-section text-center" onclick="handleEventsClick()">
+  <section id="events-section" class="events-section text-center">
     <div class="container">
       <h2 class="section-title mb-2 mt-4">Events & Media</h2>
       <p class="section-subtitle">
@@ -1973,7 +1973,7 @@
   </section>
 
   <!-- Customer Testimonials Section -->
-  <section id="testimonials-section" class="testimonial-section pl-16 pr-16" onclick="handleTestimonialsClick()">
+  <section id="testimonials-section" class="testimonial-section pl-16 pr-16">
     <div class="container">
       <h2 class="section-title mb-2 mt-5">What Our Customers Say</h2>
       <p class="section-subtitle mt-3 mb-3">Hear from businesses and consumers who have made the switch to sustainable
@@ -2060,7 +2060,7 @@
   </section>
 
   <!-- Blog Section -->
-  <section id="blog-section" class="text-center mt-4" onclick="handleBlogClick()">
+  <section id="blog-section" class="text-center mt-4">
     <div class="container">
       <h2 class="section-title mb-2">Latest from Our Blog</h2>
       <p class="section-subtitle mb-4">
@@ -2121,7 +2121,7 @@
   </section>
 
   <!-- Footer Section with Newsletter -->
-  <section id="footer-section" class="text-center" onclick="handleFooterClick()">
+  <section id="footer-section" class="text-center">
     <!-- Newsletter Section -->
     <section class="">
       <div class="relative mx-auto bg-green-50 shadow-md rounded-xl overflow-hidden px-6 md:px-6 py-6"
@@ -2159,7 +2159,7 @@
     </section>
 
     <!-- Footer Section -->
-  <section id="footer-section" class="text-center" onclick="handleFooterClick()">
+  <section id="footer-section" class="text-center">
 
   <!-- Newsletter Section (unchanged) -->
 
@@ -2382,9 +2382,9 @@
     });
 
     // Handle hero section click to transition to square plate section
-    document.getElementById('hero-section').addEventListener('click', () => {
-      navigateToSection('square-plate');
-    });
+    // document.getElementById('hero-section').addEventListener('click', () => {
+    //   navigateToSection('square-plate');
+    // });
 
     // Navigation function to handle transitions between any sections
     function navigateToSection(targetSection) {
@@ -2580,75 +2580,75 @@
     }
 
     // Section click handlers
-    function handleSquarePlateClick() {
-      if (scrollTriggered) return;
-      navigateToSection('round-plate');
-    }
+    // function handleSquarePlateClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('round-plate');
+    // }
 
-    function handleRoundPlateClick() {
-      if (scrollTriggered) return;
-      navigateToSection('deep-shape');
-    }
+    // function handleRoundPlateClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('deep-shape');
+    // }
 
-    function handleDeepShapeClick() {
-      if (scrollTriggered) return;
-      navigateToSection('tray');
-    }
+    // function handleDeepShapeClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('tray');
+    // }
 
-    function handleTrayClick() {
-      if (scrollTriggered) return;
-      navigateToSection('sustainable');
-    }
+    // function handleTrayClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('sustainable');
+    // }
 
-    function handleSustainableClick() {
-      if (scrollTriggered) return;
-      navigateToSection('sustainable2');
-    }
+    // function handleSustainableClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('sustainable2');
+    // }
 
-    function handleSustainable2Click() {
-      if (scrollTriggered) return;
-      navigateToSection('core-values');
-    }
+    // function handleSustainable2Click() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('core-values');
+    // }
 
-    function handleCoreValuesClick() {
-      if (scrollTriggered) return;
-      navigateToSection('featured-products');
-    }
+    // function handleCoreValuesClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('featured-products');
+    // }
 
-    function handleFeaturedProductsClick() {
-      if (scrollTriggered) return;
-      navigateToSection('industries');
-    }
+    // function handleFeaturedProductsClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('industries');
+    // }
 
-    function handleIndustriesClick() {
-      if (scrollTriggered) return;
-      navigateToSection('business');
-    }
+    // function handleIndustriesClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('business');
+    // }
 
-    function handleBusinessClick() {
-      if (scrollTriggered) return;
-      navigateToSection('events');
-    }
+    // function handleBusinessClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('events');
+    // }
 
-    function handleEventsClick() {
-      if (scrollTriggered) return;
-      navigateToSection('testimonials');
-    }
+    // function handleEventsClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('testimonials');
+    // }
 
-    function handleTestimonialsClick() {
-      if (scrollTriggered) return;
-      navigateToSection('blog');
-    }
+    // function handleTestimonialsClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('blog');
+    // }
 
-    function handleBlogClick() {
-      if (scrollTriggered) return;
-      navigateToSection('footer');
-    }
+    // function handleBlogClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('footer');
+    // }
 
-    function handleFooterClick() {
-      if (scrollTriggered) return;
-      navigateToSection('hero');
-    }
+    // function handleFooterClick() {
+    //   if (scrollTriggered) return;
+    //   navigateToSection('hero');
+    // }
 
     // Handle scroll events
     window.addEventListener('wheel', e => {
