@@ -1,35 +1,56 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aumekaa UI</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aumekaa UI - Parallax Overlapping</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+<style>
+  section {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    background: white;
+  }
 
-    html,
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      height: 100vh;
-      overflow: hidden;
-      background-image: url('./assets/background.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-    }
+  .fixed {
+    position: sticky !important;
+    top: 0;
+    z-index: 0 !important;
+  }
 
-    /* Navbar and dropdown styles */
-    .container {
+  .overlapping-up {
+    z-index: 9999 !important;
+    position: relative !important;
+  }
+
+  .current {
+    z-index: 10 !important;
+  }
+
+  .next {
+    z-index: 1 !important;
+  }
+
+  .prev {
+    z-index: 0 !important;
+  }
+
+  section *, .current *, .next *, .prev *, .fixed * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .overlapping-up * {
+    z-index: 10000 !important;
+  }
+
+
+   .container {
       max-width: 100%;
       margin: auto;
       background: white;
@@ -306,29 +327,6 @@
       white-space: nowrap;
     }
 
-    /* Section Display */
-    #hero-section {
-      display: block;
-    }
-
-    #square-plate-section,
-    #round-plate-section,
-    #deep-shape-section,
-    #tray-section,
-    #sustainable-section,
-    #sustainable2-section,
-    #core-values-section,
-    #featured-products-section,
-    #industries-section,
-    #business-section,
-    #events-section,
-    #testimonials-section,
-    #blog-section,
-    #newsletter-section,
-    #footer-section {
-      display: none;
-    }
-
     /* Navigation Indicators */
     .navigation-dots {
       position: fixed;
@@ -354,6 +352,27 @@
     .nav-dot.active {
       background-color: #34a853;
       transform: scale(1.2);
+    }
+
+    /* Enhanced Video Styles */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+      z-index: 2;
     }
 
     /* Animations */
@@ -1349,46 +1368,40 @@
       #footer-section .container ul li {
     color: #fff;
   }
-  </style>
-</head>
-
+</style></head>
 <body class="bg-white text-gray-800 font-sans">
-  <div id="navbar-container"></div>
-
-  <div id="products-dropdown-container" style="position: absolute; z-index: 999;"></div>
-  <div id="about-dropdown-container" style="position: absolute; z-index: 999;"></div>
-
-  <!-- Cart Sidebar -->
-  <div id="cart-sidebar" class="cart-sidebar">
-    <button class="close-btn" onclick="closeCart()">×</button>
-    <h5 class="fw-bold">Add to Cart</h5>
-    <div class="empty-message">Empty</div>
-    <div class="item-box">Add a item</div>
-  </div>
-
-  <!-- Navigation Dots -->
-  
-  <!-- Hero Section -->
- <section id="hero-section" class="bg-white mt-14"
-  style="margin-bottom: 3.5rem; margin-left: 3.5rem; margin-right: 3.5rem;">
+<div id="navbar-container"></div>
+<div id="products-dropdown-container" style="position: absolute; z-index: 999;"></div>
+<div id="about-dropdown-container" style="position: absolute; z-index: 999;"></div>
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cart-sidebar">
+<button class="close-btn" onclick="closeCart()">×</button>
+<h5 class="fw-bold">Add to Cart</h5>
+<div class="empty-message">Empty</div>
+<div class="item-box">Add a item</div>
+</div>
+<!-- Navigation Dots -->
+<!-- Parallax Wrapper -->
+<div>
+<!-- Hero Section -->
+<section class="current bg-white mt-14" id="hero-section" style="margin-bottom: 3.5rem; margin-left: 3.5rem; margin-right: 3.5rem;">
   <div class="max-w-[100vw] mx-auto">
-    <div class="relative w-full"
-      style="height: calc(95vh - 3.5rem - 3.5rem - 3.5rem); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
+    <div class="relative w-full" style="height: calc(95vh - 3.5rem - 3.5rem - 3.5rem); border-radius: 1.5rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); overflow: hidden;">
       <video
-        muted
         autoplay
         loop
+        muted
         playsinline
-        webkit-playsinline
         preload="auto"
-        class="absolute inset-0 w-full h-full object-cover"
-      >
+        webkit-playsinline
+        class="hero-video"
+        id="hero-video"
+        poster="assets/woodland-trees.mp4"
+        style="width: 100%; height: 100%; object-fit: cover; border-radius: 1.5rem;">
         <source src="assets/woodland-trees.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
-      <div class="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
-
+      <div class="video-overlay"></div>
       <div class="absolute inset-0 z-10 flex items-center justify-center px-4">
         <div class="text-white text-center max-w-3xl">
           <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md">
@@ -1405,962 +1418,776 @@
   </div>
 </section>
 
-
-  <!-- Square Plate Section -->
-  <section id="square-plate-section">
-    <div class="main-container">
-      <div class="dummy-content left">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="dummy-content right">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="plate-wrapper">
-        <img src="./assets/Plate.png" alt="Square Plate" class="plate-image" />
-      </div>
-
-      <div id="square-background-text" class="background-text">Square Plate</div>
-    </div>
-  </section>
-
-  <!-- Round Plate Section -->
-  <section id="round-plate-section">
-    <div class="main-container">
-      <div class="dummy-content bottom-left">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="dummy-content top-right">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="plate-wrapper">
-        <img src="./assets/round-plate.png" alt="Round Plate" class="plate-image" />
-      </div>
-
-      <div id="round-background-text" class="background-text">Round Plate</div>
-    </div>
-  </section>
-
-  <!-- Deep Shape Section -->
-  <section id="deep-shape-section">
-    <div class="main-container">
-      <div class="dummy-content bottom-left">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="dummy-content top-right">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="plate-wrapper">
-        <img src="./assets/deep-shape.png" alt="Deep Shape" class="plate-image" />
-      </div>
-
-      <div id="deep-shape-background-text" class="background-text">Deep Shapes</div>
-    </div>
-  </section>
-
-  <!-- Tray Section -->
-  <section id="tray-section">
-    <div class="main-container">
-      <div class="dummy-content bottom-left">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="dummy-content top-right">
-        <h3>DUMMY CONTENT</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
-      </div>
-
-      <div class="plate-wrapper">
-        <img src="./assets/tray.png" alt="Tray" class="plate-image" />
-      </div>
-
-      <div id="tray-background-text" class="background-text">Trays</div>
-    </div>
-  </section>
-
-  <!-- Sustainable Solutions Section (Original) -->
-<section id="sustainable-section" class="text-center">
-  <!-- INLINE STYLES FOR HOVER BORDER + IMAGE RADIUS -->
-  <style>
-    /* card base */
-    #sustainable-section .solution-card {
-      border: 2px solid transparent;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      background: #fff;
-      transition: border-color 0.3s ease, transform 0.3s ease;
-    }
-    /* hover effect */
-    #sustainable-section .solution-card:hover {
-      box-shadow:  0 0 12px 2px rgba(25, 135, 84, 0.4);
-      transform: translateY(-5px);
-    }
-    /* make img full-width + top corners rounded */
-    #sustainable-section .solution-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-    }
-  </style>
-
-  <div class="container">
-    <h2 class="section-title mb-3 mt-4">Sustainable Solutions</h2>
-    <p class="section-subtitle mb-4">
-      Discover our range of eco-friendly products made from renewable materials<br>
-      designed to leave zero toxic waste.
-    </p>
-
-    <div class="row g-4 justify-content-center mt-2">
-
-      <!-- CARD 1 -->
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="100" style="transform: translateY(-30px);">
-        <div class="solution-card">
-          <img src="./assets/everyday-use-products.png" alt="Everyday Use" />
-          <div class="solution-body" style="padding: 20px;">
-            <img class="icon-circle" src="./assets/Overlay.png"
-                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
-            <h6 class="fw-semibold">Everyday Use</h6>
-            <p>Sustainable tableware, drinkware, and home essentials for daily use.</p>
-            <a href="#" class="link-green">View Products →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="200" style="transform: translateY(30px);">
-        <div class="solution-card">
-          <img src="./assets/industrial-solutions.png" alt="Industrial Solutions" />
-          <div class="solution-body" style="padding: 20px;">
-            <img class="icon-circle" src="./assets/Overlay-21.png"
-                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
-            <h6 class="fw-semibold">Industrial Solutions</h6>
-            <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
-            <a href="#" class="link-green">View Solutions →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="300" style="transform: translateY(-30px);">
-        <div class="solution-card">
-          <img src="./assets/Foodservice-Packaging.png" alt="Foodservice Packaging" />
-          <div class="solution-body" style="padding: 20px;">
-            <img class="icon-circle" src="./assets/Overlay-3.png"
-                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
-            <h6 class="fw-semibold">Foodservice Packaging</h6>
-            <p>Compostable containers, cutlery, and service items for food businesses.</p>
-            <a href="#" class="link-green">View Products →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 4 -->
-      <div class="col-md-3" data-aos="fade-up" data-aos-delay="400" style="transform: translateY(30px);">
-        <div class="solution-card">
-          <img src="./assets/Custom-Solutions.png" alt="Custom Solutions" />
-          <div class="solution-body" style="padding: 20px;">
-            <img class="icon-circle" src="./assets/Overlay-31.png"
-                 style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
-            <h6 class="fw-semibold">Custom Solutions</h6>
-            <p>Tailored eco products crafted for your business or event needs.</p>
-            <a href="#" class="link-blue">View Products →</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<!-- Square Plate Section -->
+<section class="next" id="square-plate-section">
+<div class="main-container">
+<div class="dummy-content left">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="dummy-content right">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="plate-wrapper">
+<img alt="Square Plate" class="plate-image" src="./assets/Plate.png"/>
+</div>
+<div class="background-text" id="square-background-text">Square Plate</div>
+</div>
 </section>
+<!-- Round Plate Section -->
+<section class="next" id="round-plate-section">
+<div class="main-container">
+<div class="dummy-content bottom-left">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="dummy-content top-right">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="plate-wrapper">
+<img alt="Round Plate" class="plate-image" src="./assets/round-plate.png"/>
+</div>
+<div class="background-text" id="round-background-text">Round Plate</div>
+</div>
+</section>
+<!-- Deep Shape Section -->
+<section class="next" id="deep-shape-section">
+<div class="main-container">
+<div class="dummy-content bottom-left">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="dummy-content top-right">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="plate-wrapper">
+<img alt="Deep Shape" class="plate-image" src="./assets/deep-shape.png"/>
+</div>
+<div class="background-text" id="deep-shape-background-text">Deep Shapes</div>
+</div>
+</section>
+<!-- Tray Section -->
+<section class="next" id="tray-section">
+<div class="main-container">
+<div class="dummy-content bottom-left">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="dummy-content top-right">
+<h3>DUMMY CONTENT</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit augue diam, accumsan.</p>
+</div>
+<div class="plate-wrapper">
+<img alt="Tray" class="plate-image" src="./assets/tray.png"/>
+</div>
+<div class="background-text" id="tray-background-text">Trays</div>
+</div>
+</section>
+<!-- Sustainable Solutions Section -->
+ <section id="sustainable-section" class="parallax-section next text-center">
+      <div class="container">
+        <h2 class="section-title mb-3 mt-4">Sustainable Solutions</h2>
+        <p class="section-subtitle mb-4">
+          Discover our range of eco-friendly products made from renewable materials<br>
+          designed to leave zero toxic waste.
+        </p>
 
-
-
-  <!-- Sustainable Solutions Section 2 (New Layout) -->
-  <section id="sustainable2-section" class="text-center">
-    <div class="container">
-      <h2 class="section-title mb-3 mt-1">Sustainable Manufacturing</h2>
-      <p class="section-subtitle mb-4">
-        Discover our eco-friendly production processes and quality standards<br>
-        designed for maximum sustainability and minimal environmental impact.
-      </p>
-
-      <div class="relative-container">
-        <!-- Center Image -->
-        <img src="assets/ManufacturingFacility.png" class="main-image" alt="Sustainable Production Facility"
-          data-aos="fade-in" />
-
-        <!-- Top Left Card -->
-        <div class="overlay-card corner-card top-left " data-aos="fade-down-right" data-aos-delay="100">
-          <div class="d-flex align-items-start">
-            <img class="overlay-icon" src="./assets/overlay9.png" alt="Zero-Waste Production" />
-            <div>
-              <p class="overlay-title">Zero-Waste Production</p>
-              <p class="overlay-text">
-                Our manufacturing process is designed to minimize waste and
-                maximize resource efficiency.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Top Right Card -->
-        <div class="overlay-card corner-card top-right" data-aos="fade-down-left" data-aos-delay="200">
-          <div class="d-flex align-items-start">
-            <img class="overlay-icon" src="./assets/circle.png" alt="Advanced Production" />
-            <div>
-              <p class="overlay-title">Advanced Production Facilities</p>
-              <p class="overlay-text">
-              Our state-of-the-art manufacturing units are equipped with the latest technology to ensure consistent quality 
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Left Card -->
-        <div class="overlay-card corner-card bottom-left" data-aos="fade-up-right" data-aos-delay="300">
-          <div class="d-flex align-items-start">
-            <img class="overlay-icon" src="./assets/certification.png" alt="Certifications" />
-            <div>
-              <p class="overlay-title">Certifications</p>
-              <p class="overlay-text">
-                ISO 9001:2015, ISO 14001:2015, and other certifications for
-                quality and environmental compliance.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Right Card -->
-        <div class="overlay-card corner-card bottom-right" data-aos="fade-up-left" data-aos-delay="400">
-          <div class="d-flex align-items-start">
-            <img class="overlay-icon" src="./assets/quality.png" alt="Quality Control" />
-            <div>
-              <p class="overlay-title">Quality Control Lab</p>
-              <p class="overlay-text">
-                Rigorous testing protocols ensure our products meet international
-                sustainability standards.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Values Section -->
-  <section id="core-values-section" class="mt-5 text-center">
-    <div class="container">
-      <h2 class="section-title mb-2">Our Core Values</h2>
-      <p class="section-subtitle mb-4">Built on strong principles that drive our innovation and commitment to
-        sustainability. Built on strong principles that drive our innovation</p>
-
-      <div class="row g-4" style="margin-inline: 10%;">
-        <!-- Value 1 -->
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="value-card">
-            <img src="./assets/Overlay-5.png" class="value-icon" />
-            <div class="value-title">Environmental Stewardship</div>
-            <div class="value-desc">Committed to developing products that minimize environmental impact and promote
-              ecological balance.</div>
-          </div>
-        </div>
-
-        <!-- Value 2 -->
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="value-card">
-            <img src="./assets/Overlay-6.png" class="value-icon" />
-            <div class="value-title">Customer Partnership</div>
-            <div class="value-desc">Building lasting relationships through collaboration and dedicated support.</div>
-          </div>
-        </div>
-
-        <!-- Value 3 -->
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="value-card">
-            <img src="./assets/Overlay-7.png" class="value-icon" />
-            <div class="value-title">Innovation Excellence</div>
-            <div class="value-desc">Continuously pushing boundaries to create sustainable solutions that meet modern
-              needs.</div>
-          </div>
-        </div>
-
-        <!-- Value 4 -->
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-          <div class="value-card">
-            <img src="./assets/Overlay-8.png" class="value-icon" />
-            <div class="value-title">Quality Assurance</div>
-            <div class="value-desc">Maintaining highest standards in sustainable product development and manufacturing.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Products Section -->
-  <section id="featured-products-section" class="mt-5 text-center">
-    <div class="container">
-      <h2 class="section-title mb-2">Featured Products</h2>
-      <p class="section-subtitle mb-5">
-        Explore our most popular sustainable alternatives<br>
-        that help reduce environmental impact.
-      </p>
-
-      <div class="row g-4 px-4">
-        <!-- Product 1 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="product-card h-100">
-            <img src="./assets/Bamboo-Cutlery-Set.png" alt="Bamboo Cutlery Set">
-            <div class="product-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="badge badge-success">Bestseller</span>
-                <span class="rating">★★★★★ <small class="text-muted">(128)</small></span>
-              </div>
-              <div class="product-title">Bamboo Cutlery Set</div>
-              <div class="product-text">Reusable bamboo utensils including fork, knife, spoon, and chopsticks in a
-                convenient travel pouch.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="product-card h-100">
-            <img src="./assets/Sugarcane-Food-Containers.png" alt="Sugarcane Containers">
-            <div class="product-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="badge badge-primary">New Arrival</span>
-                <span class="rating">★★★★★ <small class="text-muted">(94)</small></span>
-              </div>
-              <div class="product-title">Sugarcane Food Containers</div>
-              <div class="product-text">Biodegradable containers made from sugarcane fiber (bagasse), perfect for
-                takeaway and food service.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="product-card h-100">
-            <img src="./assets/Cornstarch-Bags.png" alt="Cornstarch Bags">
-            <div class="product-body">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="badge badge-purple">Popular</span>
-                <span class="rating">★★★★☆ <small class="text-muted">(76)</small></span>
-              </div>
-              <div class="product-title">Cornstarch Bags</div>
-              <div class="product-text">100% compostable bags made from cornstarch, perfect for shopping, produce, and
-                waste management.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Industries We Serve Section -->
-  <section id="industries-section" class="mt-5 text-center">
-    <div class="container">
-      <h2 class="section-title mb-2">Industries We Serve</h2>
-      <p class="section-subtitle mb-5">
-        Providing sustainable solutions across diverse industry sectors.
-      </p>
-
-      <div class="row g-4 justify-content-center zigzag px-4">
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/Overlay-3.png" alt="Food & Beverage" />
-            </div>
-            <div class="industry-label">Food &amp; Beverage</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/Retail.png" alt="Retail" />
-            </div>
-            <div class="industry-label">Retail</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/Hospitality.png" alt="Hospitality" />
-            </div>
-            <div class="industry-label">Hospitality</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/manufacturing.png" alt="Logistics" />
-            </div>
-            <div class="industry-label">Logistics</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="500">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/healthcare.png" alt="Healthcare" />
-            </div>
-            <div class="industry-label">Healthcare</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="600">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/logistics.png" alt="Manufacturing" />
-            </div>
-            <div class="industry-label">Manufacturing</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="700">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/ecommerce.png" alt="E-commerce" />
-            </div>
-            <div class="industry-label">E-commerce</div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="800">
-          <div class="industry-card">
-            <div class="industry-icon">
-              <img src="./assets/agriculture.png" alt="Agriculture" />
-            </div>
-            <div class="industry-label">Agriculture</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Business Verticals Section -->
-  <section id="business-section" class="mt-5 text-center">
-    <div class="container">
-      <h2 class="section-title mb-2">Business Verticals</h2>
-      <p class="section-subtitle mb-5">Comprehensive sustainable solutions across multiple business segments.</p>
-
-      <div class="row g-4 px-4">
-        <!-- Consumer Products -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="vertical-card h-100">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmRC6T06vHOR5vWR9eHbC6r3OcSCVvof66A&s"
-              alt="Consumer Products">
-            <div class="vertical-content text-start">
-              <h5>Consumer Products</h5>
-              <p>Sustainable alternatives for everyday use, from kitchen essentials to personal care items.</p>
-              <ul>
-                <li>Home & Kitchen</li>
-                <li>Personal Care</li>
-                <li>Lifestyle Products</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Industrial Solutions -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="vertical-card h-100">
-            <img src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg" alt="Industrial Solutions">
-            <div class="vertical-content text-start">
-              <h5>Industrial Solutions</h5>
-              <p>Large-scale sustainable packaging and material solutions for industries.</p>
-              <ul>
-                <li>Bulk Packaging</li>
-                <li>Manufacturing Materials</li>
-                <li>Custom Solutions</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Research & Innovation -->
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="vertical-card h-100">
-            <img src="https://images.pexels.com/photos/3735766/pexels-photo-3735766.jpeg" alt="Research and Innovation">
-            <div class="vertical-content text-start">
-              <h5>Research & Innovation</h5>
-              <p>Developing next-generation sustainable materials and solutions.</p>
-              <ul>
-                <li>Material Development</li>
-                <li>Product Innovation</li>
-                <li>Sustainability Research</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Events & Media Section -->
-  <section id="events-section" class="events-section text-center">
-    <div class="container">
-      <h2 class="section-title mb-2 mt-4">Events & Media</h2>
-      <p class="section-subtitle">
-        Stay connected with our latest events, webinars, and educational content.
-      </p>
-
-      <div class="row g-4 align-items-start fs-5 mt-3">
-        <!-- Upcoming Events -->
-        <div class="col-md-6 text-start" data-aos="fade-left">
-          <h3 class="fw-bold mb-4">Upcoming Events</h3>
-
-          <!-- Event 1 -->
-          <div class="d-flex mb-4">
-            <div class="event-date me-3">
-              <div>15</div><small>May</small>
-            </div>
-            <div>
-              <div class="event-title mb-1">Sustainable Packaging Summit 2025</div>
-              <div class="event-meta">
-                Join industry leaders to discuss the future of sustainable packaging.
-              </div>
-              <div class="event-meta mt-1">📍 Mumbai, India</div>
-            </div>
-          </div>
-
-          <!-- Event 2 -->
-          <div class="d-flex mb-4">
-            <div class="event-date me-3">
-              <div>22</div><small>May</small>
-            </div>
-            <div>
-              <div class="event-title mb-1">Eco-Innovation Workshop</div>
-              <div class="event-meta">
-                Interactive session on sustainable material innovations.
-              </div>
-              <div class="event-meta mt-1">💻 Virtual Event</div>
-            </div>
-          </div>
-
-          <!-- Event 3 -->
-          <div class="d-flex mb-0 mb-md-4">
-            <div class="event-date me-3">
-              <div>05</div><small>Jun</small>
-            </div>
-            <div>
-              <div class="event-title mb-1">World Environment Day Special</div>
-              <div class="event-meta">
-                Product showcase and sustainability commitment ceremony.
-              </div>
-              <div class="event-meta mt-1">📍 Bangalore, India</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Placeholder -->
-        <div class="col-md-6" data-aos="fade-right">
-          <div class="video-box">Video Placeholder</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Customer Testimonials Section -->
-  <section id="testimonials-section" class="testimonial-section pl-16 pr-16">
-    <div class="container">
-      <h2 class="section-title mb-2 mt-5">What Our Customers Say</h2>
-      <p class="section-subtitle mt-3 mb-3">Hear from businesses and consumers who have made the switch to sustainable
-        alternatives.</p>
-
-      <div class="flex overflow-x-auto gap-4 px-4 md:px-16 scrollbar-hide pt-2">
-        <!-- Testimonial 1 -->
-        <div class="col-md-4">
-          <div class="testimonial-card h-100">
-            <div class="star-rating">★★★★★</div>
-            <p class="testimonial-text">
-              "Switching to Aumekaa's sustainable packaging has been a game-changer for our restaurant. Our customers
-              love the eco-friendly approach, and we've seen a significant increase in positive feedback and repeat
-              business."
-            </p>
-            <div class="user-info mt-3">
-              <div class="user-icon">👤</div>
-              <div class="user-details text-start">
-                <strong>Michael Rodriguez</strong>
-                <small>Owner, Fresh Earth Café</small>
+        <div class="row g-4 justify-content-center mt-2">
+          <!-- CARD 1 -->
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100" style="transform: translateY(-30px);">
+            <div class="solution-card">
+              <img src="./assets/everyday-use-products.png" alt="Everyday Use" />
+              <div class="solution-body" style="padding: 20px;">
+                <img class="icon-circle" src="./assets/Overlay.png"
+                     style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
+                <h6 class="fw-semibold">Everyday Use</h6>
+                <p>Sustainable tableware, drinkware, and home essentials for daily use.</p>
+                <a href="#" class="link-green">View Products →</a>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Testimonial 2 -->
-        <div class="col-md-4">
-          <div class="testimonial-card h-100">
-            <div class="star-rating">★★★★★</div>
-            <p class="testimonial-text">
-              "As an e-commerce business, we were looking for sustainable packaging solutions that wouldn't compromise
-              on quality. Aumekaa delivered exactly what we needed. Our customers appreciate the eco-friendly packaging,
-              and it aligns perfectly with our brand values."
-            </p>
-            <div class="user-info mt-3">
-              <div class="user-icon">👤</div>
-              <div class="user-details text-start">
-                <strong>Samantha Chen</strong>
-                <small>Founder, EcoStyle Boutique</small>
+          <!-- CARD 2 -->
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200" style="transform: translateY(30px);">
+            <div class="solution-card">
+              <img src="./assets/industrial-solutions.png" alt="Industrial Solutions" />
+              <div class="solution-body" style="padding: 20px;">
+                <img class="icon-circle" src="./assets/Overlay-21.png"
+                     style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
+                <h6 class="fw-semibold">Industrial Solutions</h6>
+                <p>Eco-friendly packaging and industrial-grade sustainable materials.</p>
+                <a href="#" class="link-green">View Solutions →</a>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Testimonial 3 -->
-        <div class="col-md-4">
-          <div class="testimonial-card h-100">
-            <div class="star-rating">★★★★★</div>
-            <p class="testimonial-text">
-              "I've been using Aumekaa's bamboo cutlery set for over a year now, and I'm impressed by both the quality
-              and durability. It's held up incredibly well with daily use, and I love knowing I'm making a small but
-              meaningful impact on reducing plastic waste."
-            </p>
-            <div class="user-info mt-3">
-              <div class="user-icon">👤</div>
-              <div class="user-details text-start">
-                <strong>James Wilson</strong>
-                <small>Environmental Consultant</small>
+          <!-- CARD 3 -->
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300" style="transform: translateY(-30px);">
+            <div class="solution-card">
+              <img src="./assets/Foodservice-Packaging.png" alt="Foodservice Packaging" />
+              <div class="solution-body" style="padding: 20px;">
+                <img class="icon-circle" src="./assets/Overlay-3.png"
+                     style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
+                <h6 class="fw-semibold">Foodservice Packaging</h6>
+                <p>Compostable containers, cutlery, and service items for food businesses.</p>
+                <a href="#" class="link-green">View Products →</a>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Testimonial 4 -->
-        <div class="col-md-4">
-          <div class="testimonial-card h-100">
-            <div class="star-rating">★★★★★</div>
-            <p class="testimonial-text">
-              "I've been using Aumekaa's bamboo cutlery set for over a year now, and I'm impressed by both the quality
-              and durability. It's held up incredibly well with daily use, and I love knowing I'm making a small but
-              meaningful impact on reducing plastic waste."
-            </p>
-            <div class="user-info mt-3">
-              <div class="user-icon">👤</div>
-              <div class="user-details text-start">
-                <strong>James Wilson</strong>
-                <small>Environmental Consultant</small>
+          <!-- CARD 4 -->
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="400" style="transform: translateY(30px);">
+            <div class="solution-card">
+              <img src="./assets/Custom-Solutions.png" alt="Custom Solutions" />
+              <div class="solution-body" style="padding: 20px;">
+                <img class="icon-circle" src="./assets/Overlay-31.png"
+                     style="background:#f2f4f6; color:#667085; width:40px; height:40px; border-radius:50%; margin-bottom:10px;" />
+                <h6 class="fw-semibold">Custom Solutions</h6>
+                <p>Tailored eco products crafted for your business or event needs.</p>
+                <a href="#" class="link-blue">View Products →</a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section id="blog-section" class="text-center mt-4">
-    <div class="container">
-      <h2 class="section-title mb-2">Latest from Our Blog</h2>
-      <p class="section-subtitle mb-4">
-        Hear from businesses and consumers who have made the switch to sustainable alternatives.
-      </p>
-
-      <div class="row g-4 px-4">
-        <!-- Blog Card 1 -->
-        <div class="col-md-4" data-aos="fade-left">
-          <div class="card blog-card h-100 d-flex flex-column">
-            <img src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg" class="card-img-top"
-              alt="Blog 1">
-            <div class="card-body text-start d-flex flex-column">
-              <div class="blog-meta mb-1">📅 April 18, 2025 · Sustainability</div>
-              <div class="blog-title mb-1">The Future of Biodegradable Materials: What's Next?</div>
-              <div class="blog-desc mb-3">Explore the latest innovations in biodegradable materials and how they're
-                reshaping industries worldwide.</div>
-              <a href="#" class="read-more mt-auto">Read More →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Blog Card 2 -->
-        <div class="col-md-4" data-aos="fade-left" data-aos-delay="100">
-          <div class="card blog-card h-100 d-flex flex-column">
-            <img src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg" class="card-img-top"
-              alt="Blog 2">
-            <div class="card-body text-start d-flex flex-column">
-              <div class="blog-meta mb-1">📅 April 12, 2025 · Green Business</div>
-              <div class="blog-title mb-1">How Restaurants Are Going Plastic-Free</div>
-              <div class="blog-desc mb-3">Discover how restaurants around the world are eliminating plastic and adopting
-                sustainable alternatives.</div>
-              <a href="#" class="read-more mt-auto">Read More →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Blog Card 3 -->
-        <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
-          <div class="card blog-card h-100 d-flex flex-column">
-            <img src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg" class="card-img-top"
-              alt="Blog 3">
-            <div class="card-body text-start d-flex flex-column">
-              <div class="blog-meta mb-1">📅 April 5, 2025 · Innovation</div>
-              <div class="blog-title mb-1">Sustainable Packaging: The Consumer Perspective</div>
-              <div class="blog-desc mb-3">How consumer preferences are driving the adoption of eco-friendly packaging
-                solutions across industries.</div>
-              <a href="#" class="read-more mt-auto">Read More →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 mb-2">
-        <a href="#" class="btn btn-outline-success px-4 py-2 rounded-pill">View All Articles →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section with Newsletter -->
-  <section id="footer-section" class="text-center">
-    <!-- Newsletter Section -->
-    <section class="">
-      <div class="relative mx-auto bg-green-50 shadow-md rounded-xl overflow-hidden px-6 md:px-6 py-6"
-        data-aos="fade-up">
-
-        <!-- Decorative Leaves -->
-        <img src="/assets/leaf.svg" alt="" class="pointer-events-none absolute top-0 left-0 h-48 opacity-20" />
-        <img src="/assets/leaf.svg" alt="" class="pointer-events-none absolute bottom-0 right-0 h-48 opacity-20" />
-
-        <div class="text-center">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-800">
-            Stay Updated on Sustainable Innovations
-          </h2>
-          <p class="mt-2 text-gray-600 max-w-xl mx-auto">
-            Join our newsletter to receive the latest updates on product launches, sustainability tips, and exclusive
-            offers.
-          </p>
-
-          <form class="mt-8 mx-auto flex max-w-md justify-center">
-            <input type="email" placeholder="Your email address"
-              class="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-              required />
-            <button type="submit"
-              class="ml-3 rounded-md bg-green-600 px-5 py-2 font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
-              Subscribe
-            </button>
-          </form>
-
-          <p class="mt-4 text-xs text-gray-500">
-            By subscribing, you agree to our <a href="#" class="underline">Privacy Policy</a>. You can unsubscribe at
-            any time.
-          </p>
         </div>
       </div>
     </section>
-
-    <!-- Footer Section -->
-  <section id="footer-section" class="text-center">
-
-  <!-- Newsletter Section (unchanged) -->
-
-
-  <!-- Footer -->
-  <footer class="bg-green-800 text-white pt-12 pb-24">
-    <div class="max-w-screen-xl mx-auto px-6 md:px-32">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
-
-        <!-- 1. Logo & Description -->
-        <div>
-          <img
-            src="./assets/footer-logo.png"
-            alt="Aumekaa Logo"
-            class="mb-4 w-28"
-          />
-          <p class="text-sm text-white/90 mb-6">
-            Providing 100% plastic-free, biodegradable, and compostable
-            alternatives for both B2B and B2C markets—ensuring eco-friendly living
-            without compromising quality.
-          </p>
-          <div class="flex space-x-3">
-            <a
-              href="#"
-              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
-            >
-              <img
-                src="./assets/facebook-icon.png"
-                alt="Facebook"
-                class="h-4 w-4"
-              />
-            </a>
-            <a
-              href="#"
-              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
-            >
-              <img src="./assets/x-icon.png" alt="X" class="h-4 w-4" />
-            </a>
-            <a
-              href="#"
-              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
-            >
-              <img
-                src="./assets/insta-icon.png"
-                alt="Instagram"
-                class="h-4 w-4"
-              />
-            </a>
-            <a
-              href="#"
-              class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition"
-            >
-              <img
-                src="./assets/linkedin-icon.png"
-                alt="LinkedIn"
-                class="h-4 w-4"
-              />
-            </a>
-          </div>
-        </div>
-
-        <!-- 2. Products -->
-        <div>
-          <h4 class="font-semibold mb-4 text-white">Products</h4>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a href="#" class="text-white hover:underline">Everyday Use</a>
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline"
-                >Industrial Solutions</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline"
-                >Foodservice Packaging</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline"
-                >E-Commerce Packaging</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline"
-                >Bamboo Products</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <!-- 3. Company -->
-        <div>
-          <h4 class="font-semibold mb-4 text-white">Company</h4>
-          <ul class="space-y-2 text-sm">
-            <li>
-              <a href="#" class="text-white hover:underline">About Us</a>
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline">Sustainability</a>
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline"
-                >Blog &amp; News</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline">Careers</a>
-            </li>
-            <li>
-              <a href="#" class="text-white hover:underline">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 4. Contact -->
-        <div>
-          <h4 class="font-semibold mb-4 text-white">Contact</h4>
-          <ul class="space-y-4 text-sm text-white/90">
-            <li class="flex items-start gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mt-1 text-white/70"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5"
-                />
-              </svg>
-              <span>123 Eco Street, Green Park, Bangalore 560001, India</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mt-1 text-white/70"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 
-                     002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z"
-                />
-              </svg>
-              <span>+91 98765 43210</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mt-1 text-white/70"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 12H8m8 0H8m8 0H8m8 0H8"
-                />
-              </svg>
-              <span>info@aumekaa.com</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Divider & Bottom Bar -->
-      <div
-        class="border-t border-white/20 mt-10 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-white/70"
-      >
-        <p>© 2025 Aumekaa Global Products Pvt. Ltd. All rights reserved.</p>
-        <div class="space-x-6 mt-2 md:mt-0">
-          <a href="#" class="text-white hover:underline">Privacy Policy</a>
-          <a href="#" class="text-white hover:underline">Terms of Service</a>
-          <a href="#" class="text-white hover:underline">Cookie Policy</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
+<!-- Sustainable Solutions Section 2 -->
+<section class="next text-center" id="sustainable2-section">
+<div class="container">
+<h2 class="section-title mb-3 mt-1">Sustainable Manufacturing</h2>
+<p class="section-subtitle mb-4">
+          Discover our eco-friendly production processes and quality standards<br/>
+          designed for maximum sustainability and minimal environmental impact.
+        </p>
+<div class="relative-container">
+<!-- Center Image -->
+<img alt="Sustainable Production Facility" class="main-image " src="assets/ManufacturingFacility.png"/>
+<!-- Top Left Card -->
+<div class="overlay-card corner-card top-left">
+<div class="d-flex align-items-start">
+<img alt="Zero-Waste Production" class="overlay-icon rounded-full" src="./assets/overlay9.png"/>
+<div>
+<p class="overlay-title">Zero-Waste Production</p>
+<p class="overlay-text">
+                  Our manufacturing process is designed to minimize waste and
+                  maximize resource efficiency.
+                </p>
+</div>
+</div>
+</div>
+<!-- Top Right Card -->
+<div class="overlay-card corner-card top-right">
+<div class="d-flex align-items-start">
+<img alt="Advanced Production" class="overlay-icon rounded-full" src="./assets/circle.png"/>
+<div>
+<p class="overlay-title">Advanced Production Facilities</p>
+<p class="overlay-text">
+                Our state-of-the-art manufacturing units are equipped with the latest technology to ensure consistent quality 
+                </p>
+</div>
+</div>
+</div>
+<!-- Bottom Left Card -->
+<div class="overlay-card corner-card bottom-left">
+<div class="d-flex align-items-start">
+<img alt="Certifications" class="overlay-icon rounded-full" src="./assets/certification.png"/>
+<div>
+<p class="overlay-title">Certifications</p>
+<p class="overlay-text">
+                  ISO 9001:2015, ISO 14001:2015, and other certifications for
+                  quality and environmental compliance.
+                </p>
+</div>
+</div>
+</div>
+<!-- Bottom Right Card -->
+<div class="overlay-card corner-card bottom-right">
+<div class="d-flex align-items-start">
+<img alt="Quality Control" class="overlay-icon rounded-full" src="./assets/quality.png"/>
+<div>
+<p class="overlay-title">Quality Control Lab</p>
+<p class="overlay-text">
+                  Rigorous testing protocols ensure our products meet international
+                  sustainability standards.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-
-  </section>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
+<!-- Core Values Section -->
+<section class="next mt-5 text-center" id="core-values-section">
+<div class="container">
+<h2 class="section-title mb-2">Our Core Values</h2>
+<p class="section-subtitle mb-4">Built on strong principles that drive our innovation and commitment to
+          sustainability. Built on strong principles that drive our innovation</p>
+<div class="row g-4" style="margin-inline: 10%;">
+<!-- Value 1 -->
+<div class="col-md-6">
+<div class="value-card">
+<img class="value-icon" src="./assets/Overlay-5.png"/>
+<div class="value-title">Environmental Stewardship</div>
+<div class="value-desc">Committed to developing products that minimize environmental impact and promote
+                ecological balance.</div>
+</div>
+</div>
+<!-- Value 2 -->
+<div class="col-md-6">
+<div class="value-card">
+<img class="value-icon" src="./assets/Overlay-6.png"/>
+<div class="value-title">Customer Partnership</div>
+<div class="value-desc">Building lasting relationships through collaboration and dedicated support.</div>
+</div>
+</div>
+<!-- Value 3 -->
+<div class="col-md-6">
+<div class="value-card">
+<img class="value-icon" src="./assets/Overlay-7.png"/>
+<div class="value-title">Innovation Excellence</div>
+<div class="value-desc">Continuously pushing boundaries to create sustainable solutions that meet modern
+                needs.</div>
+</div>
+</div>
+<!-- Value 4 -->
+<div class="col-md-6">
+<div class="value-card">
+<img class="value-icon" src="./assets/Overlay-8.png"/>
+<div class="value-title">Quality Assurance</div>
+<div class="value-desc">Maintaining highest standards in sustainable product development and manufacturing.
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products Section -->
+<section class="next mt-5 text-center" id="featured-products-section">
+<div class="container">
+<h2 class="section-title mb-2">Featured Products</h2>
+<p class="section-subtitle mb-5">
+          Explore our most popular sustainable alternatives<br/>
+          that help reduce environmental impact.
+        </p>
+<div class="row g-4 px-4">
+<!-- Product 1 -->
+<div class="col-md-4">
+<div class="product-card h-100">
+<img alt="Bamboo Cutlery Set" src="./assets/Bamboo-Cutlery-Set.png"/>
+<div class="product-body">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge badge-success">Bestseller</span>
+<span class="rating">★★★★★ <small class="text-muted">(128)</small></span>
+</div>
+<div class="product-title">Bamboo Cutlery Set</div>
+<div class="product-text">Reusable bamboo utensils including fork, knife, spoon, and chopsticks in a
+                  convenient travel pouch.</div>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="col-md-4">
+<div class="product-card h-100">
+<img alt="Sugarcane Containers" src="./assets/Sugarcane-Food-Containers.png"/>
+<div class="product-body">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge badge-primary">New Arrival</span>
+<span class="rating">★★★★★ <small class="text-muted">(94)</small></span>
+</div>
+<div class="product-title">Sugarcane Food Containers</div>
+<div class="product-text">Biodegradable containers made from sugarcane fiber (bagasse), perfect for
+                  takeaway and food service.</div>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="col-md-4">
+<div class="product-card h-100">
+<img alt="Cornstarch Bags" src="./assets/Cornstarch-Bags.png"/>
+<div class="product-body">
+<div class="d-flex justify-content-between align-items-center mb-2">
+<span class="badge badge-purple">Popular</span>
+<span class="rating">★★★★☆ <small class="text-muted">(76)</small></span>
+</div>
+<div class="product-title">Cornstarch Bags</div>
+<div class="product-text">100% compostable bags made from cornstarch, perfect for shopping, produce, and
+                  waste management.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Industries We Serve Section -->
+<section class="next mt-5 text-center" id="industries-section">
+<div class="container">
+<h2 class="section-title mb-2">Industries We Serve</h2>
+<p class="section-subtitle mb-5">
+          Providing sustainable solutions across diverse industry sectors.
+        </p>
+<div class="row g-4 justify-content-center zigzag px-4">
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Food &amp; Beverage" src="./assets/Overlay-3.png"/>
+</div>
+<div class="industry-label">Food &amp; Beverage</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Retail" src="./assets/Retail.png"/>
+</div>
+<div class="industry-label">Retail</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Hospitality" src="./assets/Hospitality.png"/>
+</div>
+<div class="industry-label">Hospitality</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Logistics" src="./assets/manufacturing.png"/>
+</div>
+<div class="industry-label">Logistics</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Healthcare" src="./assets/healthcare.png"/>
+</div>
+<div class="industry-label">Healthcare</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Manufacturing" src="./assets/logistics.png"/>
+</div>
+<div class="industry-label">Manufacturing</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="E-commerce" src="./assets/ecommerce.png"/>
+</div>
+<div class="industry-label">E-commerce</div>
+</div>
+</div>
+<div class="col-6 col-md-3">
+<div class="industry-card">
+<div class="industry-icon">
+<img alt="Agriculture" src="./assets/agriculture.png"/>
+</div>
+<div class="industry-label">Agriculture</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Business Verticals Section -->
+<section class="next mt-5 text-center" id="business-section">
+<div class="container">
+<h2 class="section-title mb-2">Business Verticals</h2>
+<p class="section-subtitle mb-5">Comprehensive sustainable solutions across multiple business segments.</p>
+<div class="row g-4 px-4">
+<!-- Consumer Products -->
+<div class="col-md-4">
+<div class="vertical-card h-100">
+<img alt="Consumer Products" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtmRC6T06vHOR5vWR9eHbC6r3OcSCVvof66A&amp;s"/>
+<div class="vertical-content text-start">
+<h5>Consumer Products</h5>
+<p>Sustainable alternatives for everyday use, from kitchen essentials to personal care items.</p>
+<ul>
+<li>Home &amp; Kitchen</li>
+<li>Personal Care</li>
+<li>Lifestyle Products</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Industrial Solutions -->
+<div class="col-md-4">
+<div class="vertical-card h-100">
+<img alt="Industrial Solutions" src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg"/>
+<div class="vertical-content text-start">
+<h5>Industrial Solutions</h5>
+<p>Large-scale sustainable packaging and material solutions for industries.</p>
+<ul>
+<li>Bulk Packaging</li>
+<li>Manufacturing Materials</li>
+<li>Custom Solutions</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Research & Innovation -->
+<div class="col-md-4">
+<div class="vertical-card h-100">
+<img alt="Research and Innovation" src="https://images.pexels.com/photos/3735766/pexels-photo-3735766.jpeg"/>
+<div class="vertical-content text-start">
+<h5>Research &amp; Innovation</h5>
+<p>Developing next-generation sustainable materials and solutions.</p>
+<ul>
+<li>Material Development</li>
+<li>Product Innovation</li>
+<li>Sustainability Research</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Events & Media Section -->
+<section class="next events-section text-center" id="events-section">
+<div class="container">
+<h2 class="section-title mb-2 mt-4">Events &amp; Media</h2>
+<p class="section-subtitle">
+          Stay connected with our latest events, webinars, and educational content.
+        </p>
+<div class="row g-4 align-items-start fs-5 mt-3">
+<!-- Upcoming Events -->
+<div class="col-md-6 text-start">
+<h3 class="fw-bold mb-4">Upcoming Events</h3>
+<!-- Event 1 -->
+<div class="d-flex mb-4">
+<div class="event-date me-3">
+<div>15</div><small>May</small>
+</div>
+<div>
+<div class="event-title mb-1">Sustainable Packaging Summit 2025</div>
+<div class="event-meta">
+                  Join industry leaders to discuss the future of sustainable packaging.
+                </div>
+<div class="event-meta mt-1">📍 Mumbai, India</div>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="d-flex mb-4">
+<div class="event-date me-3">
+<div>22</div><small>May</small>
+</div>
+<div>
+<div class="event-title mb-1">Eco-Innovation Workshop</div>
+<div class="event-meta">
+                  Interactive session on sustainable material innovations.
+                </div>
+<div class="event-meta mt-1">💻 Virtual Event</div>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="d-flex mb-0 mb-md-4">
+<div class="event-date me-3">
+<div>05</div><small>Jun</small>
+</div>
+<div>
+<div class="event-title mb-1">World Environment Day Special</div>
+<div class="event-meta">
+                  Product showcase and sustainability commitment ceremony.
+                </div>
+<div class="event-meta mt-1">📍 Bangalore, India</div>
+</div>
+</div>
+</div>
+<!-- Video Placeholder -->
+<div class="col-md-6">
+<div class="video-box">Video Placeholder</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Testimonials Section -->
+<section class="next testimonial-section pl-16 pr-16" id="testimonials-section">
+<div class="container">
+<h2 class="section-title mb-2 mt-5">What Our Customers Say</h2>
+<p class="section-subtitle mt-3 mb-3">Hear from businesses and consumers who have made the switch to sustainable
+          alternatives.</p>
+<div class="flex overflow-x-auto gap-4 px-4 md:px-16 scrollbar-hide pt-2">
+<!-- Testimonial 1 -->
+<div class="col-md-4">
+<div class="testimonial-card h-100">
+<div class="star-rating">★★★★★</div>
+<p class="testimonial-text">
+                "Switching to Aumekaa's sustainable packaging has been a game-changer for our restaurant. Our customers
+                love the eco-friendly approach, and we've seen a significant increase in positive feedback and repeat
+                business."
+              </p>
+<div class="user-info mt-3">
+<div class="user-icon">👤</div>
+<div class="user-details text-start">
+<strong>Michael Rodriguez</strong>
+<small>Owner, Fresh Earth Café</small>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="col-md-4">
+<div class="testimonial-card h-100">
+<div class="star-rating">★★★★★</div>
+<p class="testimonial-text">
+                "As an e-commerce business, we were looking for sustainable packaging solutions that wouldn't compromise
+                on quality. Aumekaa delivered exactly what we needed. Our customers appreciate the eco-friendly packaging,
+                and it aligns perfectly with our brand values."
+              </p>
+<div class="user-info mt-3">
+<div class="user-icon">👤</div>
+<div class="user-details text-start">
+<strong>Samantha Chen</strong>
+<small>Founder, EcoStyle Boutique</small>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="col-md-4">
+<div class="testimonial-card h-100">
+<div class="star-rating">★★★★★</div>
+<p class="testimonial-text">
+                "I've been using Aumekaa's bamboo cutlery set for over a year now, and I'm impressed by both the quality
+                and durability. It's held up incredibly well with daily use, and I love knowing I'm making a small but
+                meaningful impact on reducing plastic waste."
+              </p>
+<div class="user-info mt-3">
+<div class="user-icon">👤</div>
+<div class="user-details text-start">
+<strong>James Wilson</strong>
+<small>Environmental Consultant</small>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 4 -->
+<div class="col-md-4">
+<div class="testimonial-card h-100">
+<div class="star-rating">★★★★★</div>
+<p class="testimonial-text">
+                "I've been using Aumekaa's bamboo cutlery set for over a year now, and I'm impressed by both the quality
+                and durability. It's held up incredibly well with daily use, and I love knowing I'm making a small but
+                meaningful impact on reducing plastic waste."
+              </p>
+<div class="user-info mt-3">
+<div class="user-icon">👤</div>
+<div class="user-details text-start">
+<strong>James Wilson</strong>
+<small>Environmental Consultant</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section class="next text-center mt-4" id="blog-section">
+<div class="container">
+<h2 class="section-title mb-2">Latest from Our Blog</h2>
+<p class="section-subtitle mb-4">
+          Hear from businesses and consumers who have made the switch to sustainable alternatives.
+        </p>
+<div class="row g-4 px-4">
+<!-- Blog Card 1 -->
+<div class="col-md-4">
+<div class="card blog-card h-100 d-flex flex-column">
+<img alt="Blog 1" class="card-img-top" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg"/>
+<div class="card-body text-start d-flex flex-column">
+<div class="blog-meta mb-1">📅 April 18, 2025 · Sustainability</div>
+<div class="blog-title mb-1">The Future of Biodegradable Materials: What's Next?</div>
+<div class="blog-desc mb-3">Explore the latest innovations in biodegradable materials and how they're
+                  reshaping industries worldwide.</div>
+<a class="read-more mt-auto" href="#">Read More →</a>
+</div>
+</div>
+</div>
+<!-- Blog Card 2 -->
+<div class="col-md-4">
+<div class="card blog-card h-100 d-flex flex-column">
+<img alt="Blog 2" class="card-img-top" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg"/>
+<div class="card-body text-start d-flex flex-column">
+<div class="blog-meta mb-1">📅 April 12, 2025 · Green Business</div>
+<div class="blog-title mb-1">How Restaurants Are Going Plastic-Free</div>
+<div class="blog-desc mb-3">Discover how restaurants around the world are eliminating plastic and adopting
+                  sustainable alternatives.</div>
+<a class="read-more mt-auto" href="#">Read More →</a>
+</div>
+</div>
+</div>
+<!-- Blog Card 3 -->
+<div class="col-md-4">
+<div class="card blog-card h-100 d-flex flex-column">
+<img alt="Blog 3" class="card-img-top" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg"/>
+<div class="card-body text-start d-flex flex-column">
+<div class="blog-meta mb-1">📅 April 5, 2025 · Innovation</div>
+<div class="blog-title mb-1">Sustainable Packaging: The Consumer Perspective</div>
+<div class="blog-desc mb-3">How consumer preferences are driving the adoption of eco-friendly packaging
+                  solutions across industries.</div>
+<a class="read-more mt-auto" href="#">Read More →</a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 mb-2">
+<a class="btn btn-outline-success px-4 py-2 rounded-pill" href="#">View All Articles →</a>
+</div>
+</div>
+</section>
+<!-- Footer Section with Newsletter -->
+<section class="next text-center" id="footer-section">
+<!-- Newsletter Section -->
+<section>
+<div class="relative mx-auto bg-green-50 shadow-md rounded-xl overflow-hidden px-6 md:px-6 py-6">
+<!-- Decorative Leaves -->
+<img alt="" class="pointer-events-none absolute top-0 left-0 h-48 opacity-20" src="/assets/leaf.svg"/>
+<img alt="" class="pointer-events-none absolute bottom-0 right-0 h-48 opacity-20" src="/assets/leaf.svg"/>
+<div class="text-center">
+<h2 class="text-2xl md:text-3xl font-bold text-gray-800">
+              Stay Updated on Sustainable Innovations
+            </h2>
+<p class="mt-2 text-gray-600 max-w-xl mx-auto">
+              Join our newsletter to receive the latest updates on product launches, sustainability tips, and exclusive
+              offers.
+            </p>
+<form class="mt-8 mx-auto flex max-w-md justify-center">
+<input class="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Your email address" required="" type="email"/>
+<button class="ml-3 rounded-md bg-green-600 px-5 py-2 font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+                Subscribe
+              </button>
+</form>
+<p class="mt-4 text-xs text-gray-500">
+              By subscribing, you agree to our <a class="underline" href="#">Privacy Policy</a>. You can unsubscribe at
+              any time.
+            </p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-green-800 text-white pt-12 pb-24">
+<div class="max-w-screen-xl mx-auto px-6 md:px-32">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
+<!-- 1. Logo & Description -->
+<div>
+<img alt="Aumekaa Logo" class="mb-4 w-28" src="./assets/footer-logo.png"/>
+<p class="text-sm text-white/90 mb-6">
+                Providing 100% plastic-free, biodegradable, and compostable
+                alternatives for both B2B and B2C markets—ensuring eco-friendly living
+                without compromising quality.
+              </p>
+<div class="flex space-x-3">
+<a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+<img alt="Facebook" class="h-4 w-4" src="./assets/facebook-icon.png"/>
+</a>
+<a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+<img alt="X" class="h-4 w-4" src="./assets/x-icon.png"/>
+</a>
+<a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+<img alt="Instagram" class="h-4 w-4" src="./assets/insta-icon.png"/>
+</a>
+<a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+<img alt="LinkedIn" class="h-4 w-4" src="./assets/linkedin-icon.png">
+</img></a>
+</div>
+</div>
+<!-- 2. Products -->
+<div>
+<h4 class="font-semibold mb-4 text-white">Products</h4>
+<ul class="space-y-2 text-sm">
+<li>
+<a class="text-white hover:underline" href="#">Everyday Use</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Industrial Solutions</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Foodservice Packaging</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">E-Commerce Packaging</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Bamboo Products</a>
+</li>
+</ul>
+</div>
+<!-- 3. Company -->
+<div>
+<h4 class="font-semibold mb-4 text-white">Company</h4>
+<ul class="space-y-2 text-sm">
+<li>
+<a class="text-white hover:underline" href="#">About Us</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Sustainability</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Blog &amp; News</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Careers</a>
+</li>
+<li>
+<a class="text-white hover:underline" href="#">Contact Us</a>
+</li>
+</ul>
+</div>
+<!-- 4. Contact -->
+<div>
+<h4 class="font-semibold mb-4 text-white">Contact</h4>
+<ul class="space-y-4 text-sm text-white/90">
+<li class="flex items-start gap-3">
+<svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>123 Eco Street, Green Park, Bangalore 560001, India</span>
+</li>
+<li class="flex items-start gap-3">
+<svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 
+                         002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>+91 98765 43210</span>
+</li>
+<li class="flex items-start gap-3">
+<svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 12H8m8 0H8m8 0H8m8 0H8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>info@aumekaa.com</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Divider & Bottom Bar -->
+<div class="border-t border-white/20 mt-10 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-white/70">
+<p>© 2025 Aumekaa Global Products Pvt. Ltd. All rights reserved.</p>
+<div class="space-x-6 mt-2 md:mt-0">
+<a class="text-white hover:underline" href="#">Privacy Policy</a>
+<a class="text-white hover:underline" href="#">Terms of Service</a>
+<a class="text-white hover:underline" href="#">Cookie Policy</a>
+</div>
+</div>
+</div>
+</footer>
+</section>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
     let scrollTriggered = false;
     let currentSection = 'hero';
+    let scrollPosition = 0;
+    let totalPageHeight = 0;
     const sectionOrder = ['hero', 'square-plate', 'round-plate', 'deep-shape', 'tray', 'sustainable', 'sustainable2', 'core-values', 'featured-products', 'industries', 'business', 'events', 'testimonials', 'blog', 'footer'];
 
     // Initialize AOS
@@ -2369,7 +2196,55 @@
         duration: 800,
         once: true
       });
+      
+      // Calculate total page height
+      totalPageHeight = sectionOrder.length * window.innerHeight;
     });
+
+    // Enhanced Video Autoplay with Multiple Fallbacks
+    function initializeVideo() {
+      const video = document.getElementById('hero-video');
+      if (!video) return;
+
+      // Set video properties
+      video.muted = true;
+      video.autoplay = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('playsinline', '');
+
+      // Multiple play attempts
+      const attemptPlay = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Video is playing successfully');
+          }).catch(error => {
+            console.log('Video autoplay failed:', error);
+            // Try again after user interaction
+            document.addEventListener('click', () => {
+              video.play().catch(e => console.log('Manual play failed:', e));
+            }, { once: true });
+            
+            document.addEventListener('touchstart', () => {
+              video.play().catch(e => console.log('Touch play failed:', e));
+            }, { once: true });
+          });
+        }
+      };
+
+      // Try to play immediately
+      attemptPlay();
+
+      // Try again after a short delay
+      setTimeout(attemptPlay, 1000);
+
+      // Try on various events
+      ['loadeddata', 'canplay', 'canplaythrough'].forEach(event => {
+        video.addEventListener(event, attemptPlay, { once: true });
+      });
+    }
 
     // Load navbar
     document.addEventListener('DOMContentLoaded', () => {
@@ -2378,15 +2253,29 @@
         .then(html => {
           document.getElementById('navbar-container').innerHTML = html;
           setupDropdowns();
+        })
+        .catch(() => {
+          // Create a simple navbar if fetch fails
+          document.getElementById('navbar-container').innerHTML = `
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+              <div class="container-fluid">
+                <a class="navbar-brand fw-bold text-success" href="#">Aumekaa</a>
+                <div class="navbar-nav ms-auto">
+                  <a class="nav-link" href="#hero">Home</a>
+                  <a class="nav-link" href="#products">Products</a>
+                  <a class="nav-link" href="#about">About</a>
+                  <a class="nav-link" href="#contact">Contact</a>
+                </div>
+              </div>
+            </nav>
+          `;
         });
+
+      // Initialize video
+      initializeVideo();
     });
 
-    // Handle hero section click to transition to square plate section
-    // document.getElementById('hero-section').addEventListener('click', () => {
-    //   navigateToSection('square-plate');
-    // });
-
-    // Navigation function to handle transitions between any sections
+    // Enhanced Parallax Navigation System with upward scroll only
     function navigateToSection(targetSection) {
       if (currentSection === targetSection || scrollTriggered) return;
 
@@ -2396,33 +2285,99 @@
       const currentIndex = sectionOrder.indexOf(currentSection);
       const targetIndex = sectionOrder.indexOf(targetSection);
 
-      // Determine if we're going forward or backward
-      const isForward = targetIndex > currentIndex;
-
       // Update navigation dots
       updateNavigationDots(targetSection);
 
-      if (isForward) {
-        // Forward navigation with appropriate animations
-        forwardTransition(currentSection, targetSection);
+      // Only allow upward parallax overlap effect
+      if (targetIndex < currentIndex) {
+        // Upward navigation with parallax overlapping
+        upwardTransitionParallax(currentSection, targetSection);
       } else {
-        // Backward navigation
-        backwardTransition(currentSection, targetSection);
+        // Forward navigation - simple transition without overlap
+        forwardTransitionSimple(currentSection, targetSection);
       }
     }
 
-    function forwardTransition(fromSection, toSection) {
-      // Get the current section element
+    function upwardTransitionParallax(fromSection, toSection) {
+
+  // Add z-index styles dynamically
+  currentSectionEl.style.zIndex = "1";
+  targetSectionEl.style.zIndex = "9999";
+  Array.from(currentSectionEl.querySelectorAll('*')).forEach(el => el.style.zIndex = "1");
+  Array.from(targetSectionEl.querySelectorAll('*')).forEach(el => el.style.zIndex = "10000");
+
       const currentSectionEl = document.getElementById(`${fromSection}-section`);
+      const targetSectionEl = document.getElementById(`${toSection}-section`);
 
-      // Apply appropriate animation based on the current section
-      if (fromSection !== 'hero' && fromSection !== 'core-values' && fromSection !== 'sustainable' &&
-        fromSection !== 'sustainable2' && fromSection !== 'featured-products' && fromSection !== 'industries' &&
-        fromSection !== 'business' && fromSection !== 'events' && fromSection !== 'testimonials' && fromSection !== 'blog' &&
-        fromSection !== 'footer') {
+      // Reset background text for current plate section
+      if (isPlateSection(fromSection)) {
+        const currentBackgroundText = document.getElementById(`${fromSection}-background-text`);
+        if (currentBackgroundText) {
+          currentBackgroundText.style.animation = 'none';
+          currentBackgroundText.style.opacity = '0';
+        }
+      }
+
+      // Fix the previous section in place
+      currentSectionEl.classList.remove('current');
+      currentSectionEl.classList.add('fixed');
+      
+      // Bring target section up with overlap effect
+      targetSectionEl.classList.remove('prev');
+      targetSectionEl.classList.add('overlapping-up');
+
+      setTimeout(() => {
+        // Complete the transition
+        currentSectionEl.classList.remove('fixed');
+        currentSectionEl.classList.add('next');
+        
+        targetSectionEl.classList.remove('overlapping-up');
+        targetSectionEl.classList.add('current');
+
+        // Trigger background text animation for target plate sections
+        if (isPlateSection(toSection)) {
+          setTimeout(() => {
+            const targetBackgroundText = document.getElementById(`${toSection}-background-text`);
+            if (targetBackgroundText) {
+              targetBackgroundText.style.animation = 'fadeInText 1.5s ease forwards';
+              targetBackgroundText.style.opacity = '1';
+            }
+          }, 100);
+        }
+
+        // Reinitialize AOS for content sections
+        if (!isPlateSection(toSection)) {
+          AOS.refresh();
+        }
+
+        // Update current section and reset scroll trigger
+        
+    // Clean z-index override
+    targetSectionEl.style.zIndex = "";
+    currentSectionEl.style.zIndex = "";
+    Array.from(currentSectionEl.querySelectorAll('*')).forEach(el => el.style.zIndex = "");
+    Array.from(targetSectionEl.querySelectorAll('*')).forEach(el => el.style.zIndex = "");
+
+        currentSection = toSection;
+        scrollTriggered = false;
+      }, 800);
+    }
+
+    function forwardTransitionSimple(fromSection, toSection) {
+      const currentSectionEl = document.getElementById(`${fromSection}-section`);
+      const targetSectionEl = document.getElementById(`${toSection}-section`);
+
+      // Simple forward transition without overlap
+      currentSectionEl.classList.remove('current');
+      currentSectionEl.classList.add('prev');
+      
+      targetSectionEl.classList.remove('next');
+      targetSectionEl.classList.add('current');
+
+      // Apply plate animations for product sections
+      if (isPlateSection(fromSection)) {
         const currentWrapper = document.querySelector(`#${fromSection}-section .plate-wrapper`);
-
-        // Different animation based on which section we're transitioning from
+        
         if (fromSection === 'square-plate') {
           currentWrapper.classList.add('fall-animation');
         } else {
@@ -2435,44 +2390,18 @@
           currentBackgroundText.style.animation = 'none';
           currentBackgroundText.style.opacity = '0';
         }
-      } else {
-        // For hero section or sustainable sections, just fade out
-        currentSectionEl.style.transition = 'opacity 0.5s ease-out';
-        currentSectionEl.style.opacity = '0';
       }
 
-      // After animation completes, switch sections
       setTimeout(() => {
-        // Hide current section
-        currentSectionEl.style.display = 'none';
-
-        // Reset animations if needed
-        if (fromSection !== 'hero' && fromSection !== 'core-values' && fromSection !== 'sustainable' &&
-          fromSection !== 'sustainable2' && fromSection !== 'featured-products' && fromSection !== 'industries' &&
-          fromSection !== 'business' && fromSection !== 'events' && fromSection !== 'testimonials' && fromSection !== 'blog' &&
-          fromSection !== 'footer') {
+        // Reset plate animations
+        if (isPlateSection(fromSection)) {
           const currentWrapper = document.querySelector(`#${fromSection}-section .plate-wrapper`);
           currentWrapper.classList.remove('fall-animation');
           currentWrapper.classList.remove('dive-animation');
         }
 
-        // Show target section
-        const targetSectionEl = document.getElementById(`${toSection}-section`);
-        targetSectionEl.style.display = 'block';
-
-        // For hero section or sustainable sections, we need to reset opacity
-        if (fromSection === 'hero' || fromSection === 'core-values' || fromSection === 'sustainable' ||
-          fromSection === 'sustainable2' || fromSection === 'featured-products' || fromSection === 'industries' ||
-          fromSection === 'business' || fromSection === 'events' || fromSection === 'testimonials' || fromSection === 'blog' ||
-          fromSection === 'footer') {
-          currentSectionEl.style.opacity = '1';
-        }
-
-        // Trigger background text animation for product sections
-        if (toSection !== 'hero' && toSection !== 'core-values' && toSection !== 'sustainable' &&
-          toSection !== 'sustainable2' && toSection !== 'featured-products' && toSection === 'industries' &&
-          toSection === 'business' || toSection === 'events' || toSection === 'testimonials' || toSection === 'blog' ||
-          toSection === 'footer') {
+        // Trigger background text animation for target plate sections
+        if (isPlateSection(toSection)) {
           setTimeout(() => {
             const targetBackgroundText = document.getElementById(`${toSection}-background-text`);
             if (targetBackgroundText) {
@@ -2482,88 +2411,19 @@
           }, 100);
         }
 
-        // Reinitialize AOS for sustainable sections
-        if (toSection === 'core-values' || toSection === 'sustainable' ||
-          toSection === 'sustainable2' || toSection === 'featured-products' || toSection === 'industries' ||
-          toSection === 'business' || toSection === 'events' || toSection === 'testimonials' || toSection === 'blog' ||
-          toSection === 'footer') {
+        // Reinitialize AOS for content sections
+        if (!isPlateSection(toSection)) {
           AOS.refresh();
         }
 
         // Update current section and reset scroll trigger
         currentSection = toSection;
         scrollTriggered = false;
-      }, (fromSection === 'hero' || fromSection === 'core-values' || fromSection === 'sustainable' ||
-        fromSection === 'sustainable2' || fromSection === 'featured-products' || fromSection === 'industries' ||
-        fromSection === 'business' || fromSection === 'events' || fromSection === 'testimonials' || fromSection === 'blog' ||
-        fromSection === 'footer') ? 500 : 1200); // Different timing based on animation
+      }, 800);
     }
 
-    function backwardTransition(fromSection, toSection) {
-      // Reset background text animation for current section
-      if (fromSection !== 'hero' && fromSection !== 'core-values' && fromSection !== 'sustainable' &&
-        fromSection !== 'sustainable2' && fromSection !== 'featured-products' && fromSection !== 'industries' &&
-        fromSection !== 'business' && fromSection !== 'events' && fromSection !== 'testimonials' && fromSection !== 'blog' &&
-        fromSection !== 'footer') {
-        const currentBackgroundText = document.getElementById(`${fromSection}-background-text`);
-        if (currentBackgroundText) {
-          currentBackgroundText.style.animation = 'none';
-          currentBackgroundText.style.opacity = '0';
-        }
-      }
-
-      // Fade out current section
-      const currentSectionEl = document.getElementById(`${fromSection}-section`);
-      currentSectionEl.style.transition = 'opacity 0.5s ease-out';
-      currentSectionEl.style.opacity = '0';
-
-      setTimeout(() => {
-        // Hide current section
-        currentSectionEl.style.display = 'none';
-        currentSectionEl.style.opacity = '1';
-
-        // Reset current section wrapper animation if it has one
-        if (fromSection !== 'hero' && fromSection !== 'core-values' && fromSection !== 'sustainable' &&
-          fromSection !== 'sustainable2' && fromSection !== 'featured-products' && fromSection !== 'industries' &&
-          fromSection !== 'business' && fromSection !== 'events' && fromSection !== 'testimonials' && fromSection !== 'blog' &&
-          fromSection !== 'footer') {
-          const currentWrapper = document.querySelector(`#${fromSection}-section .plate-wrapper`);
-          if (currentWrapper) {
-            currentWrapper.classList.remove('dive-animation');
-            currentWrapper.classList.remove('fall-animation');
-          }
-        }
-
-        // Show target section
-        const targetSectionEl = document.getElementById(`${toSection}-section`);
-        targetSectionEl.style.display = 'block';
-
-        if (toSection !== 'hero' && toSection !== 'core-values' && toSection !== 'sustainable' &&
-          toSection !== 'sustainable2' && toSection !== 'featured-products' && toSection !== 'industries' &&
-          toSection !== 'business' && toSection !== 'events' && toSection !== 'testimonials' && toSection !== 'blog' &&
-          toSection !== 'footer') {
-          // For product sections, trigger background text animation
-          setTimeout(() => {
-            const targetBackgroundText = document.getElementById(`${toSection}-background-text`);
-            if (targetBackgroundText) {
-              targetBackgroundText.style.animation = 'fadeInText 1.5s ease forwards';
-              targetBackgroundText.style.opacity = '1';
-            }
-          }, 100);
-        }
-
-        // Reinitialize AOS for sustainable sections
-        if (toSection === 'core-values' || toSection === 'sustainable' ||
-          toSection === 'sustainable2' || toSection === 'featured-products' || toSection === 'industries' ||
-          toSection === 'business' || toSection === 'events' || toSection === 'testimonials' || toSection === 'blog' ||
-          toSection === 'footer') {
-          AOS.refresh();
-        }
-
-        // Update current section and reset scroll trigger
-        currentSection = toSection;
-        scrollTriggered = false;
-      }, 500);
+    function isPlateSection(sectionId) {
+      return ['square-plate', 'round-plate', 'deep-shape', 'tray'].includes(sectionId);
     }
 
     function updateNavigationDots(activeSection) {
@@ -2579,82 +2439,18 @@
       }
     }
 
-    // Section click handlers
-    // function handleSquarePlateClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('round-plate');
-    // }
-
-    // function handleRoundPlateClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('deep-shape');
-    // }
-
-    // function handleDeepShapeClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('tray');
-    // }
-
-    // function handleTrayClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('sustainable');
-    // }
-
-    // function handleSustainableClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('sustainable2');
-    // }
-
-    // function handleSustainable2Click() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('core-values');
-    // }
-
-    // function handleCoreValuesClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('featured-products');
-    // }
-
-    // function handleFeaturedProductsClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('industries');
-    // }
-
-    // function handleIndustriesClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('business');
-    // }
-
-    // function handleBusinessClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('events');
-    // }
-
-    // function handleEventsClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('testimonials');
-    // }
-
-    // function handleTestimonialsClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('blog');
-    // }
-
-    // function handleBlogClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('footer');
-    // }
-
-    // function handleFooterClick() {
-    //   if (scrollTriggered) return;
-    //   navigateToSection('hero');
-    // }
-
-    // Handle scroll events
+    // Handle scroll events with enhanced logic
     window.addEventListener('wheel', e => {
       if (scrollTriggered) return;
 
       const currentIndex = sectionOrder.indexOf(currentSection);
+      
+      // Calculate scroll position based on full page height
+      const scrollDelta = e.deltaY;
+      const sectionHeight = totalPageHeight / sectionOrder.length;
+      
+      scrollPosition += scrollDelta;
+      scrollPosition = Math.max(0, Math.min(scrollPosition, totalPageHeight - window.innerHeight));
 
       if (e.deltaY > 10) {
         // Scroll down - go to next section
@@ -2663,13 +2459,22 @@
           navigateToSection(sectionOrder[nextIndex]);
         }
       } else if (e.deltaY < -10) {
-        // Scroll up - go to previous section
+        // Scroll up - go to previous section with parallax overlap
         const prevIndex = currentIndex - 1;
         if (prevIndex >= 0) {
           navigateToSection(sectionOrder[prevIndex]);
         }
       }
     }, { passive: true });
+
+    // Navigation dots click handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          navigateToSection(sectionOrder[index]);
+        });
+      });
+    });
 
     // Cart functionality
     function closeCart() {
@@ -2690,148 +2495,152 @@
       let isAboutOpen = false;
 
       // PRODUCTS DROPDOWN
-      productsTrigger.addEventListener('click', function (e) {
-        e.preventDefault();
+      if (productsTrigger) {
+        productsTrigger.addEventListener('click', function (e) {
+          e.preventDefault();
 
-        if (isProductsOpen) {
-          productsDropdown.innerHTML = '';
-          productsDropdown.style.display = 'none';
-          isProductsOpen = false;
-          return;
-        }
-
-        // Close About dropdown if open
-        if (isAboutOpen) {
-          aboutDropdown.innerHTML = '';
-          aboutDropdown.style.display = 'none';
-          isAboutOpen = false;
-        }
-
-        const rect = this.getBoundingClientRect();
-        productsDropdown.style.top = `${rect.bottom + window.scrollY}px`;
-        productsDropdown.style.left = `${rect.left + window.scrollX}px`;
-        productsDropdown.style.display = 'block';
-
-        productsDropdown.innerHTML = `
-          <div class="container">
-            <div class="tab-bar" id="tabBar">
-              <div class="tab-highlight" id="tabHighlight"></div>
-              <div class="tab active" data-tab="0">Sustainable Materials</div>
-              <div class="tab" data-tab="1">Everyday Use</div>
-              <div class="tab" data-tab="2">Industrial Solutions</div>
-              <div class="tab" data-tab="3">Handicrafts</div>
-            </div>
-            <div style="position: relative;">
-              <div class="content-arrow"></div>
-              <div class="content" id="content"></div>
-            </div>
-          </div>
-        `;
-
-        isProductsOpen = true;
-
-        setTimeout(() => {
-          const tabs = document.querySelectorAll('.tab');
-          const highlight = document.getElementById('tabHighlight');
-          const content = document.getElementById('content');
-
-          const data = [
-            {
-              title: "Arreca Products",
-              items: ["Compostable Cutlery", "Bamboo Products"],
-              image: "./assets/Plate.png"
-            },
-            {
-              title: "Drinkware",
-              items: ["Tableware", "Flatware"],
-              image: "./assets/round-plate.png"
-            },
-            {
-              title: "Industrial Packing",
-              items: ["Foodservice Packaging", "E-Commerce Packaging", "Cornstarch Bags"],
-              image: "./assets/square-plate.png"
-            },
-            {
-              title: "Tableware",
-              items: ["Decor Items", "Gift Box"],
-              image: "./assets/tray.png"
-            }
-          ];
-
-          function updateHighlight(tab) {
-            highlight.style.width = `${tab.offsetWidth}px`;
-            highlight.style.left = `${tab.offsetLeft}px`;
+          if (isProductsOpen) {
+            productsDropdown.innerHTML = '';
+            productsDropdown.style.display = 'none';
+            isProductsOpen = false;
+            return;
           }
 
-          function updateContent(index) {
-            const d = data[index];
-            content.innerHTML = `
-              <div style="display: flex; align-items: center; justify-content: center; gap: 24px;">
-                <img src="${d.image}" alt="Product" style="width: 80px; height: 80px; border-radius: 8px;">
-                <div style="text-align: left;">
-                  <div style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">${d.title}</div>
-                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 15px; color: #444;">
-                    ${d.items.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join('')}
-                  </ul>
-                </div>
+          // Close About dropdown if open
+          if (isAboutOpen) {
+            aboutDropdown.innerHTML = '';
+            aboutDropdown.style.display = 'none';
+            isAboutOpen = false;
+          }
+
+          const rect = this.getBoundingClientRect();
+          productsDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+          productsDropdown.style.left = `${rect.left + window.scrollX}px`;
+          productsDropdown.style.display = 'block';
+
+          productsDropdown.innerHTML = `
+            <div class="container">
+              <div class="tab-bar" id="tabBar">
+                <div class="tab-highlight" id="tabHighlight"></div>
+                <div class="tab active" data-tab="0">Sustainable Materials</div>
+                <div class="tab" data-tab="1">Everyday Use</div>
+                <div class="tab" data-tab="2">Industrial Solutions</div>
+                <div class="tab" data-tab="3">Handicrafts</div>
               </div>
-            `;
-          }
+              <div style="position: relative;">
+                <div class="content-arrow"></div>
+                <div class="content" id="content"></div>
+              </div>
+            </div>
+          `;
 
-          tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-              tabs.forEach(t => t.classList.remove('active'));
-              tab.classList.add('active');
-              updateHighlight(tab);
-              updateContent(parseInt(tab.dataset.tab));
+          isProductsOpen = true;
+
+          setTimeout(() => {
+            const tabs = document.querySelectorAll('.tab');
+            const highlight = document.getElementById('tabHighlight');
+            const content = document.getElementById('content');
+
+            const data = [
+              {
+                title: "Arreca Products",
+                items: ["Compostable Cutlery", "Bamboo Products"],
+                image: "./assets/Plate.png"
+              },
+              {
+                title: "Drinkware",
+                items: ["Tableware", "Flatware"],
+                image: "./assets/round-plate.png"
+              },
+              {
+                title: "Industrial Packing",
+                items: ["Foodservice Packaging", "E-Commerce Packaging", "Cornstarch Bags"],
+                image: "./assets/square-plate.png"
+              },
+              {
+                title: "Tableware",
+                items: ["Decor Items", "Gift Box"],
+                image: "./assets/tray.png"
+              }
+            ];
+
+            function updateHighlight(tab) {
+              highlight.style.width = `${tab.offsetWidth}px`;
+              highlight.style.left = `${tab.offsetLeft}px`;
+            }
+
+            function updateContent(index) {
+              const d = data[index];
+              content.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; gap: 24px;">
+                  <img src="${d.image}" alt="Product" style="width: 80px; height: 80px; border-radius: 8px;">
+                  <div style="text-align: left;">
+                    <div style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">${d.title}</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 15px; color: #444;">
+                      ${d.items.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join('')}
+                    </ul>
+                  </div>
+                </div>
+              `;
+            }
+
+            tabs.forEach(tab => {
+              tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                updateHighlight(tab);
+                updateContent(parseInt(tab.dataset.tab));
+              });
             });
-          });
 
-          const activeTab = document.querySelector('.tab.active');
-          updateHighlight(activeTab);
-          updateContent(0);
-        }, 0);
-      });
+            const activeTab = document.querySelector('.tab.active');
+            updateHighlight(activeTab);
+            updateContent(0);
+          }, 0);
+        });
+      }
 
       // ABOUT DROPDOWN
-      aboutTrigger.addEventListener('click', function (e) {
-        e.preventDefault();
+      if (aboutTrigger) {
+        aboutTrigger.addEventListener('click', function (e) {
+          e.preventDefault();
 
-        if (isAboutOpen) {
-          aboutDropdown.innerHTML = '';
-          aboutDropdown.style.display = 'none';
-          isAboutOpen = false;
-          return;
-        }
+          if (isAboutOpen) {
+            aboutDropdown.innerHTML = '';
+            aboutDropdown.style.display = 'none';
+            isAboutOpen = false;
+            return;
+          }
 
-        if (isProductsOpen) {
-          productsDropdown.innerHTML = '';
-          productsDropdown.style.display = 'none';
-          isProductsOpen = false;
-        }
+          if (isProductsOpen) {
+            productsDropdown.innerHTML = '';
+            productsDropdown.style.display = 'none';
+            isProductsOpen = false;
+          }
 
-        const rect = this.getBoundingClientRect();
-        aboutDropdown.style.top = `${rect.bottom + window.scrollY}px`;
-        aboutDropdown.style.left = `${rect.left + window.scrollX}px`;
-        aboutDropdown.style.display = 'block';
+          const rect = this.getBoundingClientRect();
+          aboutDropdown.style.top = `${rect.bottom + window.scrollY}px`;
+          aboutDropdown.style.left = `${rect.left + window.scrollX}px`;
+          aboutDropdown.style.display = 'block';
 
-        aboutDropdown.innerHTML = `
-          <div class="custom-menu">
-            <ul class="mb-0 p-0">
-              <li>Who We Are</li>
-              <li>Our Mission</li>
-              <li>Sustainability Commitment</li>
-            </ul>
-          </div>
-        `;
+          aboutDropdown.innerHTML = `
+            <div class="custom-menu">
+              <ul class="mb-0 p-0">
+                <li>Who We Are</li>
+                <li>Our Mission</li>
+                <li>Sustainability Commitment</li>
+              </ul>
+            </div>
+          `;
 
-        isAboutOpen = true;
-      });
+          isAboutOpen = true;
+        });
+      }
 
       // Close dropdowns on outside click
       document.addEventListener('click', function (event) {
-        const isClickInsideProducts = productsDropdown.contains(event.target) || productsTrigger.contains(event.target);
-        const isClickInsideAbout = aboutDropdown.contains(event.target) || aboutTrigger.contains(event.target);
+        const isClickInsideProducts = productsDropdown.contains(event.target) || (productsTrigger && productsTrigger.contains(event.target));
+        const isClickInsideAbout = aboutDropdown.contains(event.target) || (aboutTrigger && aboutTrigger.contains(event.target));
 
         if (!isClickInsideProducts && isProductsOpen) {
           productsDropdown.innerHTML = '';
@@ -2875,23 +2684,6 @@
         backgroundText.style.opacity = '1';
       }
     }
-
-    // Override the original navigateToSection function
-    const originalNavigateToSection = navigateToSection;
-    navigateToSection = function (targetSection) {
-      originalNavigateToSection(targetSection);
-
-      // Make sure background text is visible for the target section
-      if (targetSection !== 'hero' && targetSection !== 'core-values' && targetSection !== 'sustainable' &&
-        targetSection !== 'sustainable2' && targetSection !== 'featured-products' && targetSection !== 'industries' &&
-        targetSection !== 'business' && targetSection !== 'events' && targetSection !== 'testimonials' && targetSection !== 'blog' &&
-        targetSection !== 'footer') {
-        setTimeout(() => {
-          showBackgroundText(targetSection);
-        }, 800);
-      }
-    };
   </script>
 </body>
-
 </html>
