@@ -368,7 +368,7 @@ section *,
 
 /* Enhanced Video Styles */
 .hero-video {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -628,7 +628,7 @@ section *,
     height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 6rem;
+    padding-top: 5rem;
 }
 
 #sustainable-section .container {
