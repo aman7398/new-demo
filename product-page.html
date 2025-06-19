@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slider Carousel Product Card Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <!-- <link rel="stylesheet" href="css/product-page.css"> -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <!-- <script src="./Js/main.js"></script> -->
+
+
+    <style>
+        body {
+            font-family: 'Inter';
+            background-color: #fff;
+            background-image: url('./assets/background.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* bg image */
+        .bg-img {
+            background-image: url('./assets/bg-img.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-img-section {
+            background-image: url('./assets/background.svg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .font-ctrl h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: #1aa149;
+        }
+
+        .card-bg-img {
+            background-image: url('./assets/card-img.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-container {
+            padding: 65px;
+        }
+
+        .carousel-content {
+            /* background: #d9d9d9; */
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            height: 382px;
+
+        }
+
+        .carousel-content h4 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .carousel-content p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .banner-text {
+            text-align: left;
+            color: #999999DD;
+            padding: 10px;
+            position: relative;
+            z-index: 1;
+            font-family: Inter;
+        }
+
+        .banner-text h1 {
+            font-weight: 600;
+            font-size: 45px;
+        }
+
+        .banner-text p {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 30px;
+            margin-top: 30px;
+            color: #999999DD;
+        }
+
+        .cta-button {
+            background-color: #FF4747;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 55px;
+            font-family: Inter;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 4px;
+        }
+
+        .carousel-indicators .active {
+            width: 3rem;
+            height: 10px;
+            background-color: #666;
+            border-radius: 5px / 50%;
+            /* Rounds only left and right edges */
+            /* Perfect pill shape — left and right ends fully rounded */
+            opacity: 1;
+
+        }
+
+        .section-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            padding: 60px;
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+        }
+
+        .left-section {
+            max-width: 100%;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .left-section img {
+            width: 40px;
+            margin-bottom: 20px;
+        }
+
+        .left-section h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: inherit;
+            font-family: Inter;
+        }
+
+        .left-section p {
+            font-size: 14px;
+            color: inherit;
+            margin-bottom: 20px;
+            font-family: Inter;
+        }
+
+        .explore-btn {
+            align-items: center;
+            background-color: #1aa149;
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .carousel-wrapper {
+            /* flex-grow: 10; */
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            margin: 0 auto;
+            text-align: center;
+            margin-left: 200px;
+        }
+
+        .owl-carousel .item {
+            background-color: #e3e3e3;
+            border-radius: 15px;
+            height: 371px;
+            width: 232px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item.arreca {
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=232&h=371&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        .item h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: #1aa149;
+        }
+
+        .item.arreca h3,
+        .item.arreca span {
+            color: white;
+        }
+
+        .item span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .owl-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .owl-nav button {
+            background: #1aa149 !important;
+            color: #fff !important;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px !important;
+            pointer-events: all;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .addbackgroundImage {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1564866657310-270b94f1a7b2?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        .addbackgroundImage::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .addbackgroundImage .section-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .section-wrapper {
+                padding: 30px;
+                flex-direction: column;
+            }
+
+            .carousel-wrapper {
+                max-width: 100%;
+                position: relative;
+                /* Required for absolute child */
+                overflow: hidden;
+            }
+        }
+
+        .carousel-inner {
+            display: flex;
+            gap: 5rem;
+            /* Adjust spacing as needed */
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            /* Prevent shrinking */
+            max-width: 100%;
+            /* Prevent overflow */
+        }
+
+        .owl-carousel .item {
+            background-color: #e3e3e3;
+            border-radius: 15px;
+            height: 371px;
+            width: 232px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item.arreca {
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=232&h=371&q=80') center/cover no-repeat;
+            color: white;
+        }
+
+        .item h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: #1aa149;
+        }
+
+        .item.arreca h3,
+        .item.arreca span {
+            color: white;
+        }
+
+        .item span {
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .owl-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .owl-nav button {
+            background: #1aa149 !important;
+            color: #fff !important;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 18px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .owl-carousel .item {
+            padding: 0 !important;
+        }
+
+        /* Background Section */
+        .addbackgroundImage {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1564866657310-270b94f1a7b2?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        .addbackgroundImage::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        .addbackgroundImage .section-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* banner-section.css */
+
+        .banner-section {
+            padding: 100px 20px;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .banner-background {
+            padding: 0 20px;
+            max-width: fit-content;
+        }
+
+        .banner-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            max-width: 100%;
+            background: url('https://tse1.mm.bing.net/th?id=OIP.d6J1g7pRNIEaWqdisZXDbQHaEK&pid=Api&P=0&h=220');
+
+        }
+
+        .banner-card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .banner-card-text {
+            flex: 1;
+            min-width: 250px;
+            color: white;
+        }
+
+        .banner-card-text h2 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .banner-card-text p {
+            font-size: 16px;
+            color: white;
+        }
+
+        .banner-card-icon {
+            flex: 0 0 auto;
+            margin-left: 20px;
+        }
+
+        .banner-card-icon img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 25px 20px;
+            width: 55%;
+            /* margin-left: 30%; */
+            /* max-width: 320px; */
+        }
+
+        .form-card .form-control {
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .form-card .form-control:focus {
+            box-shadow: none;
+            border-color: #1aa149;
+        }
+
+        .form-card .input-group-text {
+            background: transparent;
+            border: none;
+        }
+
+        .form-card .input-group button {
+            border-radius: 8px;
+            height: 35px;
+            font-size: 14px;
+            text-align: center;
+
+        }
+
+        .form-card .btn-primary {
+            background-color: #1aa149;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .form-card .btn-outline-success {
+            font-size: 12px;
+            padding: 6px 12px;
+            margin-left: 10px;
+        }
+
+        .feather-blur-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .feather-blur-right-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(to left, rgb(27, 26, 26), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .owl-prev,
+        .owl-next {
+            border-radius: 100px !important;
+        }
+
+        @media (max-width: 768px) {
+            .banner-section {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .banner-text,
+            .form-card {
+                max-width: 100%;
+            }
+        }
+
+        /* footer styling */
+        #footer-section {
+            height: 100% !important;
+            display: block;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        #footer-section .container {
+            height: auto !important;
+            background-color: transparent;
+        }
+
+        .newsletter-container {
+            background-color: #f8fdf8;
+            padding: 3rem 0;
+        }
+
+        .main-footer {
+            background-color: #0b5d2e;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .main-footer a:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .main-footer {
+            background-color: #0b5d2e;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        /* Updated Footer Styles */
+        .newsletter-container {
+            background-color: #f8fdf8;
+            padding: 3rem 0;
+        }
+
+        .main-footer {
+            background-color: #0b5d2e;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .main-footer a:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        #footer-section {
+            height: auto !important;
+            display: block;
+        }
+
+        #footer-section .container {
+            height: auto !important;
+            background-color: transparent;
+        }
+
+        ol,
+        ul {
+            padding-left: 0 !important;
+        }
+
+        #footer-section .container ul li {
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <!-- header start -->
+    <header class="w-full shadow-md px-16 py-4 flex items-center h-20 fixed top-0 bg-white z-50">
+        <!-- logo -->
+        <div class="flex items-center space-x-2">
+            <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto" />
+        </div>
+        <!-- primary nav (centered on desktop) -->
+        <nav class="hidden md:flex flex-1 justify-center items-center space-x-6 text-sm">
+            <a href="/index.html" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Home
+            </a>
+            <a href="#" id="about-tab-trigger"
+                class="text-gray-700 transition-colors hover:text-green-600 cursor-pointer"
+                style="letter-spacing: 1px;">
+                About
+            </a>
+            <a href="#" id="products-tab-trigger" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Products
+            </a>
+            <a href="solutions.html" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Solutions
+            </a>
+            <a href="technology.html" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Technology
+            </a>
+            <a href="custom-projects.html" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Custom Projects
+            </a>
+            <a href="blog.html" class="text-gray-700 transition-colors hover:text-green-600"
+                style="letter-spacing: 1px;">
+                Blogs &amp; Events
+            </a>
+            <!-- wrap icons in anchor (or span) so they get the same hover -->
+            <a href="#" class="text-gray-700 transition-colors hover:text-green-600" style="letter-spacing: 1px;">
+                <i class="bi bi-search text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-700 transition-colors hover:text-green-600 ml-4" style="letter-spacing: 1px;">
+                <i class="bi bi-cart text-lg"></i>
+            </a>
+        </nav>
+        <!-- auth buttons -->
+        <div class="flex items-center space-x-2">
+            <button onclick="window.location.href='./login.html'"
+                class="text-sm px-4 py-1 rounded-full bg-gray-300 text-gray-800 hover:text-gray-900 transition">
+                Login
+            </button>
+
+            <button onclick="window.location.href='./register.html'"
+                class="text-sm px-4 py-1 rounded-full bg-green-600 text-white hover:bg-green-700 transition">
+                Register
+            </button>
+        </div>
+    </header>
+    <!-- header section ends -->
+
+
+    <!-- hero carousel start -->
+    <div class="container carousel-container bg-img-section mt-20">
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- carousel 1  -->
+                <div class="carousel-item active">
+                    <div class="carousel-content"
+                        style="background-image: url('./assets/nature-green.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        <div class="banner-text">
+                            <h1>Banner Placeholder</h1>
+                            <p>is simply dummy text of the printing and typesetting industry.<br>
+                                Lorem Ipsum has been the industry's standard dummy text ever <br> since the 1500s.</p>
+                        </div>
+
+                        <button class="cta-button">CTA Button</button>
+                    </div>
+                </div>
+                <!-- carousel 2 -->
+                <div class="carousel-item">
+                    <div class="carousel-content"
+                        style="background-image: url('./assets/nature-green.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        <div class="banner-text">
+                            <h1>Banner Placeholder</h1>
+                            <p>is simply dummy text of the printing and typesetting industry.<br>
+                                Lorem Ipsum has been the industry's standard dummy text ever <br> since the 1500s.</p>
+                        </div>
+
+                        <button class="cta-button">CTA Button</button>
+                    </div>
+                </div>
+                <!-- carousel 3 -->
+                <div class="carousel-item">
+                    <div class="carousel-content"
+                        style="background-image: url('./assets/nature-green.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        <div class="banner-text">
+                            <h1>Banner Placeholder</h1>
+                            <p>is simply dummy text of the printing and typesetting industry.<br>
+                                Lorem Ipsum has been the industry's standard dummy text ever <br> since the 1500s.</p>
+                        </div>
+
+                        <button class="cta-button">CTA Button</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-content"
+                        style="background-image: url('./assets/nature-green.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                        <div class="banner-text">
+                            <h1>Banner Placeholder</h1>
+                            <p>is simply dummy text of the printing and typesetting industry.<br>
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        </div>
+
+                        <button class="cta-button">CTA Button</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="3"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- hero carousel ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer section start  -->
+    <section class="next text-center h-full" id="footer-section">
+        <!-- Newsletter Section -->
+        <div>
+            <div
+                class="relative mx-auto bg-green-50 shadow-md rounded-xl overflow-hidden px-6 md:px-6 py-6 bg-img-section">
+                <!-- Decorative Leaves -->
+                <img alt="" class="pointer-events-none absolute top-0 left-0 h-48 opacity-20" src="/assets/leaf.svg" />
+                <img alt="" class="pointer-events-none absolute bottom-0 right-0 h-48 opacity-20"
+                    src="/assets/leaf.svg" />
+                <div class="text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">
+                        Stay Updated on Sustainable Innovations
+                    </h2>
+                    <p class="mt-2 text-gray-600 max-w-xl mx-auto">
+                        Join our newsletter to receive the latest updates on product launches, sustainability tips, and
+                        exclusive
+                        offers.
+                    </p>
+                    <form class="mt-8 mx-auto flex max-w-md justify-center">
+                        <input
+                            class="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            placeholder="Your email address" required="" type="email" />
+                        <button
+                            class="ml-3 rounded-md bg-green-600 px-5 py-2 font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            type="submit">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p class="mt-4 text-xs text-gray-500">
+                        By subscribing, you agree to our <a class="underline" href="#">Privacy Policy</a>. You can
+                        unsubscribe at
+                        any time.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="bg-green-800 text-white pb-[-4rem] pb-8">
+            <div class="max-w-screen-xl mx-auto px-2 md:px-32">
+                <div class="grid grid-cols-1 md:grid-cols-4 lg:gap-2 md:gap-2  text-left">
+                    <!-- 1. Logo & Description -->
+                    <div class="mt-8">
+                        <img alt="Aumekaa Logo" class="mb-4 w-28" src="./assets/footer-logo.png" />
+                        <p class="text-sm text-white/90 mb-6">
+                            Providing 100% plastic-free, biodegradable, and compostable
+                            alternatives for both B2B and B2C markets—ensuring eco-friendly living
+                            without compromising quality.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+                                <img alt="Facebook" class="h-4 w-4" src="./assets/facebook-icon.png" />
+                            </a>
+                            <a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+                                <img alt="X" class="h-4 w-4" src="./assets/x-icon.png" />
+                            </a>
+                            <a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+                                <img alt="Instagram" class="h-4 w-4" src="./assets/insta-icon.png" />
+                            </a>
+                            <a class="bg-white/20 rounded-full p-2 hover:bg-white/30 transition" href="#">
+                                <img alt="LinkedIn" class="h-4 w-4" src="./assets/linkedin-icon.png">
+                                </img></a>
+                        </div>
+                    </div>
+                    <!-- 2. Products -->
+                    <div class="mt-8 lg:ml-32">
+                        <h4 class="font-semibold mb-4 text-white">Products</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>
+                                <a class="text-white hover:underline" href="#">Everyday Use</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Industrial Solutions</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Foodservice Packaging</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">E-Commerce Packaging</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Bamboo Products</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 3. Company -->
+                    <div class="mt-8 lg:ml-32">
+                        <h4 class="font-semibold mb-4 text-white">Company</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>
+                                <a class="text-white hover:underline" href="#">About Us</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Sustainability</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Blog &amp; News</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Careers</a>
+                            </li>
+                            <li>
+                                <a class="text-white hover:underline" href="#">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 4. Contact -->
+                    <div class="mt-8 lg:ml-16">
+                        <h4 class="font-semibold mb-4 text-white">Contact</h4>
+                        <ul class="space-y-4 text-sm text-white/90">
+                            <li class="flex items-start gap-3">
+                                <svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                <span>123 Eco Street, Green Park, Bangalore 560001, India</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 
+                         002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                <span>+91 98765 43210</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="h-5 w-5 mt-1 text-white/70" fill="none" stroke="currentColor"
+                                    viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 12H8m8 0H8m8 0H8m8 0H8" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"></path>
+                                </svg>
+                                <span>info@aumekaa.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Divider & Bottom Bar -->
+                <div
+                    class="border-t border-white/20 mt-4 pt-2 flex flex-col md:flex-row justify-between items-center text-sm text-white/70">
+                    <p>© 2025 Aumekaa Global Products Pvt. Ltd. All rights reserved.</p>
+                    <div class="space-x-6 mt-2 md:mt-0">
+                        <a class="text-white hover:underline" href="#">Privacy Policy</a>
+                        <a class="text-white hover:underline" href="#">Terms of Service</a>
+                        <a class="text-white hover:underline" href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- <script src="Js/main.js"></script> -->
+    <script>
+        ['#carousel1', '#carousel2', '#carousel3', '#carousel3 , #carousel4'].forEach(id => {
+            $(id).owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                stagePadding: 10,
+                navText: ['←', '→'],
+                responsive: {
+                    0: { items: 1 },
+                    576: { items: 2 },
+                    768: { items: 2 },
+                    992: { items: 3 }
+                }
+            });
+        });
+        $(document).ready(function () {
+            $('#carousel1, #carousel2, #carousel3, #carousel4').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                navText: ['←', '→'],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    768: {
+                        items: 3
+                    },
+                    992: {
+                        items: 4
+                    }
+                }
+            });
+        });
+        // fetch('./navbar.html')
+        //     .then(res => res.text())
+        //     .then(data => {
+        //         document.getElementById('navbar-container').innerHTML = data;
+        //     });
+        // fetch('./footer.html')
+        //     .then(res => res.text())
+        //     .then(data => {
+        //         document.getElementById('footer-container').innerHTML = data;
+        //     });
+        const track = document.getElementById("carouselTrack");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        const scrollAmount = 280; // width + margin
+
+        nextBtn.addEventListener("click", () => {
+            track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+        prevBtn.addEventListener("click", () => {
+            track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
